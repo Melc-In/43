@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlcat.c                                          :+:      :+:    :+:   */
+/*   strdup.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 18:32:28 by cglandus          #+#    #+#             */
-/*   Updated: 2022/10/07 03:36:25 by cglandus         ###   ########.fr       */
+/*   Created: 2022/10/07 01:45:43 by cglandus          #+#    #+#             */
+/*   Updated: 2022/10/07 02:43:28 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-t_size	strlcat(char *dest, const char *src, t_size n)
+char	*ft_strdup(const char *s)
 {
-	t_size	i;
-	t_size	j;
+	char	*s_cpy;
+	int		i;
 
 	i = 0;
-	j = 0;
-	while (dest[j])
-		j++;
-	while (i < n && src[i] != '\0')
+	s_cpy = malloc(ft_strlen((char *)s) * sizeof(char) + 1);
+	if (!s_cpy)
+		return (s_cpy);
+	while (s[i])
 	{
-		dest[j + i] = src[i];
+		s_cpy[i] = s[i];
 		i++;
 	}
-	while(dest[j])
-		j++;
-	if (dest[j] != '\0')
-		dest[j] = '\0';
-	return (ft_strlen(dest) + ft_strlen((char *)src));
+	return (s_cpy);
 }

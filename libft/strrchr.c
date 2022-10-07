@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 17:32:34 by cglandus          #+#    #+#             */
-/*   Updated: 2022/10/05 03:41:44 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/10/07 04:07:11 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	const char	*last_pos;
-	int			cheap_trigger;
+	t_size	len_s;
+	void	*null;
 
-	cheap_trigger = 0;
-	while (s++)
+	len_s = ft_strlen((char *)s);
+	null = (void *)0;
+	while (s[len_s])
 	{
-		if (*s == c)
-			last_pos = &s;
-			cheap_trigger = 1;
+		if (s[len_s] == c)
+			return ((char *)s + len_s);
+		len_s--;
 	}
-	if (*s == '\0' == c)
-		return (s);
-	if (cheap_trigger)
-		return (last_pos);
-	return (t_NULL);
+	if ((*s == '\0') && (c == '\0'))
+		return ((char *)s);
+	return (null);
 }
+
