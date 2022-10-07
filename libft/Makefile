@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 18:32:12 by cglandus          #+#    #+#              #
-#    Updated: 2022/10/07 04:20:28 by cglandus         ###   ########.fr        #
+#    Updated: 2022/10/07 04:34:39 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,10 @@ $(NAME): ${OBJ}
 	ar rc ${NAME} ${OBJ}
 
 clean: 
-	rm ${OBJ}
+	rm -rf ${OBJ}
 
 fclean: clean 
-	rm ${NAME}
+	rm -rf ${NAME}
 
 re: fclean all
 
