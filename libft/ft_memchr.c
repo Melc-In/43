@@ -1,23 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/28 17:13:52 by cglandus          #+#    #+#             */
-/*   Updated: 2022/10/14 18:12:02 by cglandus         ###   ########.fr       */
+/*   Created: 2022/10/10 19:14:25 by cglandus          #+#    #+#             */
+/*   Updated: 2022/10/12 17:55:21 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_size	ft_strlen(const char *str)
+void	*ft_memchr(const void *s, int c, t_size n)
 {
-	int	i;
+	char		*s2;
+	t_size		i;
 
+	s2 = (char *)s;
 	i = 0;
-	while (str[i])
+	while (n--)
+	{
+		if (s2[i] == c)
+			return (s2 + i);
 		i++;
-	return (i);
+	}
+	return (T_NULL);
 }
+/*
+#include <stdio.h>
+#include <string.h>
+
+int	main()
+{
+	int	tab[7] = {-49, 49, 1, -1, 0, -2, 2};
+	printf("%s\n", (char *)ft_memchr(tab, -1, 7));
+	printf("/////////////\n");
+	printf("%s\n", (char *)memchr(tab, -1, 7));
+	return (0);
+}*/

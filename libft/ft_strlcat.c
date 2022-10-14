@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlcat.c                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 18:32:28 by cglandus          #+#    #+#             */
-/*   Updated: 2022/10/07 03:36:25 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:13:59 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_size	strlcat(char *dest, const char *src, t_size n)
+t_size	ft_strlcat(char *dest, const char *src, t_size n)
 {
 	t_size	i;
 	t_size	j;
@@ -26,7 +26,7 @@ t_size	strlcat(char *dest, const char *src, t_size n)
 		dest[j + i] = src[i];
 		i++;
 	}
-	while(dest[j])
+	while (dest[j])
 		j++;
 	if (dest[j] != '\0')
 		dest[j] = '\0';
