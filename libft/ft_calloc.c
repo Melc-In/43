@@ -6,20 +6,22 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 01:03:17 by cglandus          #+#    #+#             */
-/*   Updated: 2022/10/07 01:45:19 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/11/08 03:34:36 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-void	*ft_calloc(t_size nmemb, t_size size)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
 
-	if (nmemb == 0 || size == 0 || nmemb * size > 2147483647)
-		return (malloc(0));
+	if (nmemb * size > SIZE_MAX
+		|| nmemb >= SIZE_MAX || size >= SIZE_MAX)
+		return (T_NULL);
 	ptr = malloc(size * nmemb);
+	if (!ptr)
+		return (T_NULL);
 	ft_bzero(ptr, nmemb * size);
 	return (ptr);
 }

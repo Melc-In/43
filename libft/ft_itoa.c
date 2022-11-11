@@ -6,54 +6,65 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:52:48 by cglandus          #+#    #+#             */
-/*   Updated: 2022/10/26 15:39:56 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/11/11 01:23:24 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-int	nb_digit(int n)
+static int	nb_digit(int n)
 {
 	int	n2;
 	int	nb;
 
-	n2 = n;
 	nb = 0;
-	while (n2 / 10 > 1)
+	if (n == -2147483648)
+		return (10);
+	if (n < 0)
 	{
-		n_cpy /= 10;
+		n2 = n * -1;
+		nb++;
+	}
+	else
+		n2 = n;
+	while (n2 / 10 > 0)
+	{
+		n2 /= 10;
 		nb++;
 	}
 	return (nb);
 }
 
+static int	negative_modulo(int n)
+{
+	if (n == -2147483648)
+		return (8);
+	if (n < 0)
+		n *= -1;
+	return (n % 10);
+}
+
 char	*ft_itoa(int n)
 {
 	char	*result;
-	int		n_cpy;
-	int		sign;
+	int		i;
 
-	sign = 0;
-	n_cpy = n;
+	i = nb_digit(n);
+	result = ft_calloc(i + 2, 1);
+	if (!result)
+		return (T_NULL);
+	if (n == 0)
+	{
+		result[i] = '0';
+		return (result);
+	}
 	if (n < 0)
-	{
-		n *= -1;
-		sign = 1;
-	}
-	if (sign)
-	{
-		result = malloc(sign + nb_digit(n));
 		result[0] = '-';
-	}
-	else
-		result = malloc(nb_digit(n) * sizeof(char));
-	while (n_cpy / 10 > 0)
+	while (n)
 	{
-		*result = (n_cpy % 10) + '0';
-		result++;
-		n_cpy /= 10;
+		result[i] = '0' + negative_modulo(n);
+		n /= 10;
+		i--;
 	}
-	result = '\0';
 	return (result);
 }

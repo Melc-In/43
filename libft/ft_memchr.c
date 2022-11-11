@@ -6,36 +6,26 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 19:14:25 by cglandus          #+#    #+#             */
-/*   Updated: 2022/10/12 17:55:21 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/11/11 01:23:33 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, t_size n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char		*s2;
-	t_size		i;
+	unsigned char		*s2;
+	size_t				i;
 
-	s2 = (char *)s;
+	s2 = (unsigned char *)s;
 	i = 0;
-	while (n--)
+	if (n == 0)
+		return (T_NULL);
+	while (i < n)
 	{
-		if (s2[i] == c)
+		if ((unsigned char)s2[i] == (unsigned char)c)
 			return (s2 + i);
 		i++;
 	}
 	return (T_NULL);
 }
-/*
-#include <stdio.h>
-#include <string.h>
-
-int	main()
-{
-	int	tab[7] = {-49, 49, 1, -1, 0, -2, 2};
-	printf("%s\n", (char *)ft_memchr(tab, -1, 7));
-	printf("/////////////\n");
-	printf("%s\n", (char *)memchr(tab, -1, 7));
-	return (0);
-}*/

@@ -6,18 +6,21 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 18:44:06 by cglandus          #+#    #+#             */
-/*   Updated: 2022/10/17 18:51:23 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/11/08 03:42:36 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 void	ft_putendl_fd(char *s, int fd)
 {
 	int	nl;
 
 	nl = '\n';
-	while (*s)
-		write(fd, s++, 1);
-	write(fd, &nl, 1);
+	if (s)
+	{
+		while (*s)
+			write(fd, s++, 1);
+		write(fd, &nl, 1);
+	}
 }

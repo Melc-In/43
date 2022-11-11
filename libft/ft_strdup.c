@@ -6,11 +6,10 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 01:45:43 by cglandus          #+#    #+#             */
-/*   Updated: 2022/10/07 02:43:28 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/11/11 02:37:24 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 char	*ft_strdup(const char *s)

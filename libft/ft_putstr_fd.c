@@ -6,11 +6,11 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 18:42:35 by cglandus          #+#    #+#             */
-/*   Updated: 2022/10/26 15:23:31 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/11/08 03:42:49 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {

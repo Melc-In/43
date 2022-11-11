@@ -6,18 +6,18 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 17:04:22 by cglandus          #+#    #+#             */
-/*   Updated: 2022/10/12 18:42:47 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/11/05 22:18:51 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, t_size n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_size	i;
+	size_t	i;
 
 	i = 0;
-	while (i < n)
+	while (i < n && (s1[i] != '\0' || s2[i] != '\0'))
 	{
 		if (!(s1[i] == s2[i]))
 		{

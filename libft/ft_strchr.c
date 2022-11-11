@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 17:22:59 by cglandus          #+#    #+#             */
-/*   Updated: 2022/10/12 18:53:23 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/11/11 01:24:15 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strchr(const char *s, int c)
 {
 	while (*s)
 	{
-		if (*s == c)
+		if (*s == (char)c)
 			return ((char *)s);
 		s++;
 	}
@@ -24,18 +24,3 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)s);
 	return (T_NULL);
 }
-/*
-#include <stdio.h>
-#include <string.h>
-
-int	main()
-{
-	const char	str[] = "bonjour";
-	int			c;
-
-	c = 'b';
-	printf("%s\n", ft_strchr(str, c));
-	printf("////////\n");
-	printf("%s\n", strchr(str, c));
-	return (0);
-}*/

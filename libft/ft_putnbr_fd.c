@@ -6,11 +6,10 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 18:53:07 by cglandus          #+#    #+#             */
-/*   Updated: 2022/10/17 19:02:09 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/11/08 04:29:30 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
 void	ft_putnbr_fd(int n, int fd)
