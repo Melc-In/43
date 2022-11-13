@@ -29,10 +29,6 @@ OBJ = $(SRC:.c=.o)
 
 OBJB = $(SRCB:.c=.o)
 
-ifdef BONUS
-    $(SRC) += $(SRCB)
-endif
-
 %.o : %.c
     ${CC} -o $@ -c $< ${CFLAGS}
 
@@ -47,7 +43,7 @@ so:
     gcc -nostartfiles -shared -o libft.so $(OBJ) $(OBJB)
 
 bonus:
-    @make BONUS=1
+    ar rc $ aller...
 
 clean: 
     rm -rf ${OBJ} ${OBJB}
