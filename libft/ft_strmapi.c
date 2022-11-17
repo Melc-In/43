@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 16:16:00 by cglandus          #+#    #+#             */
-/*   Updated: 2022/11/08 03:43:28 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/11/13 23:24:39 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char			*out;
 
 	i = 0;
-	if (!s)
+	if (!s || !f)
 		return (T_NULL);
 	out = malloc(ft_strlen(s) * sizeof(char) + 1);
 	if (!out)

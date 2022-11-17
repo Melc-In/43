@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 17:32:07 by cglandus          #+#    #+#             */
-/*   Updated: 2022/11/11 01:24:39 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/11/14 02:17:37 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	len_s2;
 
 	i = 0;
-	len_s2 = ft_strlen((char *)little);
-	if (!big && len == 0)
-		return ((char *) big);
-	if (!*little)
+	if ((!big && len == 0) || !*little)
 		return ((char *)big);
+	len_s2 = ft_strlen((char *)little);
 	while (*big && i <= len)
 	{	
 		if (ft_strncmp(big, little, len_s2) == 0)

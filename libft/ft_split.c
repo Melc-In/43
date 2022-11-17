@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 02:31:18 by cglandus          #+#    #+#             */
-/*   Updated: 2022/11/11 12:04:12 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/11/14 01:57:30 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,5 @@ char	**ft_split(char const *s, char c)
 		else
 			i[0]++;
 	}
-	array[i[1]] = T_NULL;
 	return (array);
 }
