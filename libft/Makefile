@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/13 21:05:17 by cglandus          #+#    #+#              #
-#    Updated: 2022/11/17 16:31:27 by cglandus         ###   ########.fr        #
+#    Updated: 2022/11/18 23:25:34 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,12 +30,6 @@ OBJ = $(SRC:.c=.o)
 
 OBJB = $(SRCB:.c=.o)
 
-define banner
-█░░ █ █▄▄ █▀▀ ▀█▀
-█▄▄ █ █▄█ █▀░ ░█░\n\n\n
-endef
-export banner
-
 ifdef BONUS
 	SRC += ${SRCB}
 endif
@@ -46,26 +40,18 @@ endif
 
 all: ${NAME}
 
-banner:
-	@printf "\033[1;34m$$banner\033[1;00m"
-
 $(NAME): ${OBJ}
 	@echo "\033[1;31m[Linking...]\033[1;00m "$@
 	@ar rc ${NAME} ${OBJ}
 	@ranlib ${NAME}
 	@echo "\033[1;32m[Build finished]\033[1;00m"
 
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC) $(SRCB)
-	gcc -nostartfiles -shared -o libft.so $(OBJ) $(OBJB)
-
 bonus:
 	@make BONUS=1 --no-print-directory
 
 clean:
-	@clear
 	@echo "\033[1;31m[Cleaning ...]\033[1;00m "
-	rm -rf ${OBJ} ${OBJB}
+	@rm -rf ${OBJ} ${OBJB}
 
 fclean: clean
 	@rm -rf ${NAME}
@@ -73,6 +59,4 @@ fclean: clean
 
 re: fclean all
 
-reb: fclean bonus
-
-.PHONY: all clean fclean re so bonus banner sweep
+.PHONY: all clean fclean re bonus
