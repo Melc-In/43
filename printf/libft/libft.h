@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 18:03:34 by cglandus          #+#    #+#             */
-/*   Updated: 2022/11/23 17:04:09 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/12/16 19:12:23 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ char	**ft_split(char const *s, char c);
 int		ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
 int		ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putnbr_base_fd(int nbr, char *base, int fd);
+int		ft_putnbr_fd(int n, int fd);
+int		ft_putnbr_base_fd(unsigned long long nbr, char *base, int fd);
 
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);

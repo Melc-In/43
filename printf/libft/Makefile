@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/13 21:05:17 by cglandus          #+#    #+#              #
-#    Updated: 2022/11/23 01:09:53 by cglandus         ###   ########.fr        #
+#    Updated: 2022/12/14 18:22:31 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC = ft_atoi.c\
 	  ft_putchar_fd.c\
 	  ft_putendl_fd.c\
 	  ft_putnbr_fd.c\
+	  ft_putnbr_base_fd.c\
 	  ft_putstr_fd.c\
 	  ft_split.c\
 	  ft_strchr.c\

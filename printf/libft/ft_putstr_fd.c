@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 18:42:35 by cglandus          #+#    #+#             */
-/*   Updated: 2022/11/23 15:32:24 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/12/14 19:30:14 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@ int	ft_putstr_fd(char *s, int fd)
 	int	i;
 
 	i = 0;
-	if (s)
+	if (!s)
+		return (write(fd, "(null)", 6));
+	while (*s)
 	{
-		while (*s)
-		{
-			write(fd, s++, 1);
-			i++;
-		}
+		write(fd, s++, 1);
+		i++;
 	}
 	return (i);
 }

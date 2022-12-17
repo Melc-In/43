@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 01:30:06 by cglandus          #+#    #+#             */
-/*   Updated: 2022/11/23 14:26:12 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/12/16 19:03:20 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 int	print_uints(unsigned int n)
 {
-	unsigned int	nb;
-	int	len;
+	size_t	size;
 
-	nb = n;
-	len = 1;
-	ft_putnbr_fd(nb, 1);
-	if (nb < 0)
-		len++;
-	while (nb > 9)
+	size = 0;
+	if (n <= 9)
+		return (ft_putchar_fd(n + '0', 1));
+	if (n > 9)
 	{
-		len++;
-		nb /= 10;
+		size += ft_putnbr_fd(n / 10, 1);
+		size += ft_putchar_fd(n % 10 + '0', 1);
 	}
-	return(len);
+	return (size);
 }

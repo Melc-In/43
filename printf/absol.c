@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   absol.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 01:57:45 by cglandus          #+#    #+#             */
-/*   Updated: 2022/12/16 22:25:43 by cglandus         ###   ########.fr       */
+/*   Created: 2022/12/15 15:51:30 by cglandus          #+#    #+#             */
+/*   Updated: 2022/12/15 17:07:00 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-#include "libft/libft.h"
-#include <stdarg.h>
-
-int	absol(int n);
-int	print_hex(unsigned int n, char c);
-int	print_ints(int n);
-int	print_ptr(unsigned long long ptr);
-int	print_uints(unsigned int n);
-int	ft_printf(const char *str, ...);
-
-#endif
+int	absol(int n)
+{
+	if (n == INT_MIN)
+		return (INT_MAX - 1);
+	if (n < 0)
+		return (n * -1);
+	return (n);
+}
