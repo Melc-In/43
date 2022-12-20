@@ -41,15 +41,13 @@ int	ft_printf(const char *str, ...)
 		return (-1);
 	va_start(ap, str);
 	len = 0;
-	err[0] = 0;
-	err[1] = 0;
+	ft_bzero(err, 2);
 	while (*str)
 	{
 		if (*str == '%')
 		{
 			err[0] = parsing(++str, ap);
-			if (err[0] == -1)
-				err[1] = 1;
+			err[1] = err[0] == -1;
 			len += err[0];
 			str++;
 		}

@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 15:06:02 by cglandus          #+#    #+#              #
-#    Updated: 2022/12/20 18:43:31 by cglandus         ###   ########.fr        #
+#    Updated: 2022/12/20 22:50:43 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = libftprintf.a
 CC = clang
 
 SRC = absol.c\
+	  ft_bzero.c\
 	  ft_printf.c\
 	  ft_putchar_fd.c\
 	  ft_putnbr_base_fd.c\
