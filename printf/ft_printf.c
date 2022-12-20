@@ -6,7 +6,7 @@
 /*   By: cglandus <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:39:42 by cglandus          #+#    #+#             */
-/*   Updated: 2022/12/16 22:51:30 by cglandus         ###   ########.fr       */
+/*   Updated: 2022/12/20 18:56:33 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ int	ft_printf(const char *str, ...)
 	int			len;
 	int			err[2];
 
-	err[0] = 0;
-	err[1] = 0;
 	if (!str)
 		return (-1);
 	va_start(ap, str);
 	len = 0;
+	err[0] = 0;
+	err[1] = 0;
 	while (*str)
 	{
 		if (*str == '%')
@@ -57,7 +57,7 @@ int	ft_printf(const char *str, ...)
 			len += write(1, str++, 1);
 	}
 	if (err[1])
-		len = -1; 
+		len = -1;
 	va_end(ap);
 	return (len);
 }
