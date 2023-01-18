@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:02:10 by cglandus          #+#    #+#             */
-/*   Updated: 2023/01/18 13:55:55 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:43:59 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	*join(char *dest, char *src)
 	char	*str;
 
 	if (!dest)
-		dest = malloc(1);
+		dest = calloc(1, 1);
 	str = ft_strjoin(dest, src);
 	free(dest);
 	return (str);
@@ -31,7 +31,7 @@ static char	*get_that_line(char *str)
 	i = 0;
 	while (str[i] != '\n' && str[i])
 		i++;
-	line = malloc(i + 1);
+	line = calloc(i + 1, 1);
 	while (i + 1)
 	{
 		line[i] = str[i];
@@ -88,7 +88,9 @@ static char	*get_line(char *stash, int fd)
 		len = read(fd, line, BUFFER_SIZE);
 		line[len] = '\0';
 		swtch = 1;
+		free(line);
 	}
+	free(line);
 	return (stash);
 }
 
