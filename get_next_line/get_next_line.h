@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:22:55 by cglandus          #+#    #+#             */
-/*   Updated: 2023/01/18 12:53:38 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:47:30 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strjoin(char const *s1, char const *s2);
-void	*ft_bzero(void *s, size_t n);
+char	*join(char *dest, char *src);
 
 #endif

@@ -6,22 +6,11 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:02:10 by cglandus          #+#    #+#             */
-/*   Updated: 2023/01/18 14:43:59 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:21:09 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-static char	*join(char *dest, char *src)
-{
-	char	*str;
-
-	if (!dest)
-		dest = calloc(1, 1);
-	str = ft_strjoin(dest, src);
-	free(dest);
-	return (str);
-}
 
 static char	*get_that_line(char *str)
 {
@@ -49,7 +38,10 @@ static char	*cut_stash(char *stash)
 	i = 0;
 	j = 0;
 	if (*stash == '\0')
+	{
+		free(stash);
 		return (NULL);
+	}
 	save = ft_calloc(ft_strlen(ft_strchr(stash, '\n')), 1);
 	while (stash[i] != '\n' && stash[i])
 		i++;
@@ -69,26 +61,20 @@ static char	*get_line(char *stash, int fd)
 {
 	int		len;
 	char	*line;
-	int		swtch;
 
 	line = calloc(BUFFER_SIZE + 1, 1);
 	if (!line)
 		return (NULL);
-	swtch = 0;
 	len = read(fd, line, BUFFER_SIZE);
-	line[len] = '\0';
-	stash = join(stash, line);
+	if (len <= 0)
+		stash = join(stash, line);
 	while (len > 0)
 	{
+		stash = join(stash, line);
 		if (ft_strchr(line, '\n'))
 			break ;
-		if (swtch == 1)
-			stash = join(stash, line);
-		ft_bzero(line, len);
-		len = read(fd, line, BUFFER_SIZE);
-		line[len] = '\0';
-		swtch = 1;
 		free(line);
+		len = read(fd, line, BUFFER_SIZE);
 	}
 	free(line);
 	return (stash);
@@ -107,5 +93,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = get_that_line(stash);
 	stash = cut_stash(stash);
+	if (ft_strlen(stash) == 0)
+		free(stash);
 	return (line);
 }

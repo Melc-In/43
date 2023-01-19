@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:00:27 by cglandus          #+#    #+#             */
-/*   Updated: 2023/01/18 14:43:19 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:48:56 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,10 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-void	*ft_bzero(void *s, size_t n)
-{
-	unsigned char	*temp;
-
-	temp = (unsigned char *)s;
-	while (n--)
-		*temp++ = '\0';
-	return (s);
-}
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void			*ptr;
+	unsigned char	*temp;
 	size_t			n;
 
 	n = nmemb * size;
@@ -58,7 +50,9 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	ptr = malloc(size * nmemb);
 	if (!ptr)
 		return (NULL);
-	ft_bzero(ptr, nmemb * size);
+	temp = (unsigned char *)ptr;
+	while (n--)
+		*temp++ = '\0';
 	return (ptr);
 }
 
@@ -88,4 +82,15 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	s3[i] = '\0';
 	return (s3);
+}
+
+char	*join(char *dest, char *src)
+{
+	char	*str;
+
+	if (!dest)
+		dest = calloc(1, 1);
+	str = ft_strjoin(dest, src);
+	free(dest);
+	return (str);
 }
