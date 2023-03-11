@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:02:10 by cglandus          #+#    #+#             */
-/*   Updated: 2023/03/11 17:01:57 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:15:07 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*get_that_line(char *stash)
 {
@@ -96,18 +96,18 @@ static char	*get_line(char *stash, int fd)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash = NULL;
+	static char	*stash[1024];
 	char		*line;
 
 	if (fd < 0 || fd > 1023 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!ft_strchr(stash, '\n'))
-		stash = get_line(stash, fd);
-	line = get_that_line(stash);
-	stash = cut_stash(stash);
+	if (!ft_strchr(stash[fd], '\n'))
+		stash[fd] = get_line(stash[fd], fd);
+	line = get_that_line(stash[fd]);
+	stash[fd] = cut_stash(stash[fd]);
 	if (ft_strlen(line) == 0)
-		free(stash);
-	if (!stash)
+		free(stash[fd]);
+	if (!stash[fd])
 		return (NULL);
 	return (line);
 }
