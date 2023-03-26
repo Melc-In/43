@@ -1,29 +1,57 @@
+|-----------|
+| Passwords |
+|-----------|
+
 Lamalicea42
 
 Lamalicea24
 
 Julienlemalinesttrestresfortauxjeuxvideosprankex
 
-packages :
+
+
+|----------|
+| Packages |
+|----------|
 
 pam_cracklib
 
-pp :
 
 
-etc/pam.d/common-password
+|-----------------|
+| Password Policy |
+|-----------------|
 
-https://debian-facile.org/doc:securite:passwd:libpam-pwquality
+directory : etc/pam.d/common-password
+	    /etc/login.defs
 
-/etc/login.defs
-
-Password aging controls.
-
-https://doc.ubuntu-fr.org/sudoers#afficher_des_asterisques_lors_de_la_saisie_du_mot_de_passe
-https://www.thegeekdiary.com/how-to-enable-sudo-i-o-logging/
-
-
-Monitoring
+links : https://debian-facile.org/doc:securite:passwd:libpam-pwquality
+	https://www.redhat.com/sysadmin/password-expiration-date-linux
+	https://doc.ubuntu-fr.org/sudoers#afficher_des_asterisques_lors_de_la_saisie_du_mot_de_passe
+	https://www.thegeekdiary.com/how-to-enable-sudo-i-o-logging/
 
 
-https://linuxhint.com/run-script-debian-11-boot-up/
+
+|------------|
+| Monitoring |
+|------------|
+
+/etc/systemd/system/monitoring.sh
+
+#!/bin/bash
+
+uname -a
+grep "physical id" /proc/cpuinfo | uniq | wc -l
+grep "processor" /proc/cpuinfo | wc -l
+free -h
+
+links : https://linuxhint.com/run-script-debian-11-boot-up/
+	https://linuxhint.com/execute-crontab-every-5-minutes/
+	https://web.archive.org/web/20220508111404/https://www.codequoi.com/en/born2beroot-02-configuring-a-debian-virtual-server/
+
+|--------|
+| Tester |
+|--------|
+
+https://github.com/HEADLIGHTER/Born2BeRoot-42
+
