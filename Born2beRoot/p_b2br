@@ -40,10 +40,32 @@ links : https://debian-facile.org/doc:securite:passwd:libpam-pwquality
 
 #!/bin/bash
 
-uname -a
-grep "physical id" /proc/cpuinfo | uniq | wc -l
-grep "processor" /proc/cpuinfo | wc -l
-free -h
+arch=$(uname -a)
+pcpu=$(grep "physical id" /proc/cpuinfo | uniq | wc -l)
+vcpu=$(grep "processor" /proc/cpuinfo | wc -l)
+memu=$(free -h | grep Mem: | awk'{print $3}')
+tmem=$(free -h | grep Mem: | awk'{print $2}')
+pmem=$(free -b | grep Mem: | awk'{printf("%.2f%%"), $3 / $2 * 100}')
+dusg=$(df -h --total | grep total | cut -d " " -f 34)
+tdsk=$(df -h --total | grep total | cut -d " " -f 34)
+pdku=$(df -h --total | grep total | cut -d " " -f 34)
+cpuu=$(top -bn1 | grep '^%Cpu' | cut -c 9- | xargs | awk '{printf("%.1f%%"), $3 + $1}')
+lboo=$(who -b | awk '{print($3 " " $4)}')
+
+wall "
+#Architecture : $arch
+#CPU physical : $pcpu
+#vCPU : $vcpu
+#Memory Usage : $memu/$tmem ($pmem)
+#Disk Usage : $dusg/$tdsk ($pdku)
+#CPU load : $cpuu
+#Last boot : $lboo
+#LVM use :
+#Connection TCP :
+#User log :
+#Network :
+#Sudo :
+"
 
 links : https://linuxhint.com/run-script-debian-11-boot-up/
 	https://linuxhint.com/execute-crontab-every-5-minutes/
