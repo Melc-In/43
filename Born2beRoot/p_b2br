@@ -8,6 +8,12 @@ Lamalicea24
 
 Julienlemalinesttrestresfortauxjeuxvideosprankex
 
+adduser
+test
+PSSWD42lesgo
+groupadd evaluating
+usermod -aG
+
 
 
 |----------|
@@ -15,6 +21,8 @@ Julienlemalinesttrestresfortauxjeuxvideosprankex
 |----------|
 
 pam_cracklib
+ufw
+--> sudo ufw status verbose
 
 
 
@@ -22,8 +30,10 @@ pam_cracklib
 | Password Policy |
 |-----------------|
 
-directory : etc/pam.d/common-password
+directory : /etc/pam.d/common-password
 	    /etc/login.defs
+	    /etc/sudoers
+	    /etc/hostname
 
 links : https://debian-facile.org/doc:securite:passwd:libpam-pwquality
 	https://www.redhat.com/sysadmin/password-expiration-date-linux
@@ -51,6 +61,12 @@ tdsk=$(df -h --total | grep total | cut -d " " -f 34)
 pdku=$(df -h --total | grep total | cut -d " " -f 34)
 cpuu=$(top -bn1 | grep '^%Cpu' | cut -c 9- | xargs | awk '{printf("%.1f%%"), $3 + $1}')
 lboo=$(who -b | awk '{print($3 " " $4)}')
+lvma=$(if [$(lsblk | grep lvm | wc -l) -eq 0]; then echo no; else echo yes; fi)
+acco=$(grep TCP /proc/net/sockstat | awk '{print $3}')
+uusr=$(who | wc -l)
+ipad=$(hostname -I | awk'{print $1}')
+maca=$(ip link show | grep link/ether | awk '{print $2}')
+sucm=$(grep COMMAND /var/log/sudo/sudo.log | wc -l)
 
 wall "
 #Architecture : $arch
