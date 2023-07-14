@@ -2,19 +2,19 @@
 | Passwords |
 |-----------|
 
-Lamalicea42
+Lamalicea42 Passeval42
 
-Lamalicea24
+Lamalicea24 Passeval33
+
+
 
 Julienlemalinesttrestresfortauxjeuxvideosprankex
 
 adduser
-test
-PSSWD42lesgo
-groupadd evaluating
+groupadd
 usermod -aG
 
-
+ssh cglandus@ -p 4242
 
 |----------|
 | Packages |
@@ -23,6 +23,7 @@ usermod -aG
 pam_cracklib
 ufw
 --> sudo ufw status verbose
+sudo aa-status
 
 
 
@@ -40,8 +41,7 @@ links : https://debian-facile.org/doc:securite:passwd:libpam-pwquality
 	https://doc.ubuntu-fr.org/sudoers#afficher_des_asterisques_lors_de_la_saisie_du_mot_de_passe
 	https://www.thegeekdiary.com/how-to-enable-sudo-i-o-logging/
 
-
-
+CorecReussi42👍
 |------------|
 | Monitoring |
 |------------|
@@ -57,8 +57,8 @@ memu=$(free -h | grep Mem: | awk'{print $3}')
 tmem=$(free -h | grep Mem: | awk'{print $2}')
 pmem=$(free -b | grep Mem: | awk'{printf("%.2f%%"), $3 / $2 * 100}')
 dusg=$(df -h --total | grep total | cut -d " " -f 34)
-tdsk=$(df -h --total | grep total | cut -d " " -f 34)
-pdku=$(df -h --total | grep total | cut -d " " -f 34)
+tdsk=$(df -h --total | grep total | cut -d " " -f 30)
+pdku=$(df -h --total | grep total | cut -d " " -f 38)
 cpuu=$(top -bn1 | grep '^%Cpu' | cut -c 9- | xargs | awk '{printf("%.1f%%"), $3 + $1}')
 lboo=$(who -b | awk '{print($3 " " $4)}')
 lvma=$(if [$(lsblk | grep lvm | wc -l) -eq 0]; then echo no; else echo yes; fi)
@@ -76,11 +76,11 @@ wall "
 #Disk Usage : $dusg/$tdsk ($pdku)
 #CPU load : $cpuu
 #Last boot : $lboo
-#LVM use :
-#Connection TCP :
-#User log :
-#Network :
-#Sudo :
+#LVM use : $lvma
+#Connection TCP : $acco ESTABLISHED
+#User log : $uusr
+#Network : $ipad ($maca)
+#Sudo : $sucm cmd
 "
 
 links : https://linuxhint.com/run-script-debian-11-boot-up/
