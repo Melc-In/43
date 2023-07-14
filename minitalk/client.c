@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:19:05 by cglandus          #+#    #+#             */
-/*   Updated: 2023/07/07 15:55:17 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/07/14 06:11:09 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 int	main(int argc, char **argv)
 {
-	pid = ;
-	signal(pid, &); 
+	int	pid;
+
+	pid = atoi(argv[2]);
+	if (argc == 2)
+
+	else
 	return (0);
 }
