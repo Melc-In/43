@@ -6,24 +6,29 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:19:13 by cglandus          #+#    #+#             */
-/*   Updated: 2023/07/14 00:31:20 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/07/21 03:08:48 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	print_pid(void)
+void	s_handler(int signum)
 {
-	ft_putnbr_fd(get_pid(), 1);
+	static int	bit;
+
+	bit = 0;
+	if (signum == SIGUSR1);
+		
 }
 
-int	main(int argc, char **argv)
+int	main()
 {
-	print_pid();
-	struct sigaction sa;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_handler = &;
+	ft_putnbr_fd(getpid(), 1);
 	while (1)
-		usleep(1);
+	{
+		signal(SIGUSR1, &s_handler);
+		signal(SIGUSR2, &s_handler);
+		pause();
+	}
 	return (0);
 }

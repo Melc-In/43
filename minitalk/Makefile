@@ -6,11 +6,11 @@
 #    By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/07 12:22:21 by cglandus          #+#    #+#              #
-#    Updated: 2023/07/14 00:25:43 by cglandus         ###   ########.fr        #
+#    Updated: 2023/07/19 21:11:20 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT = /
+LIBFT_DIR = ./libft
 
 NAME_SERVER = server
 
@@ -26,11 +26,14 @@ SRC = client.c\
 OBJ = $(SRC:.c=.o)
 
 %.o: %.c
+	make -C $(LIBFT_DIR)
 	${CC} -o $@ -c $< ${CFLAGS}
 
 $(NAME_SERVER): ${OBJ}
 
-all: ${NAME_SERVER} ${NAME_CLIENT}
+$(NAME_CLIENT): ${OBJ}
+
+all: ${NAME_CLIENT} ${NAME_SERVER}
 
 clean:
 	rm -rf ${OBJ}
