@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:19:05 by cglandus          #+#    #+#             */
-/*   Updated: 2023/07/26 22:51:48 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/07/27 08:30:43 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,18 @@ int	main(int argc, char **argv)
 {
 	int	i;
 	int	pid;
-	int	len_mess;
 
 	i = 0;
-	pid = atoi(argv[1]);
-	len_mess = ft_strlen(argv[2]);
+	pid = 0;
 	if (argc > 3)
 		return (1);
+	if (argv[1])
+		pid = atoi(argv[1]);
 	if (pid < 1)
 		return (1);
 	if (argc == 3)
 	{
-		send_len_mess(pid, len_mess);
+		send_len_mess(pid, ft_strlen(argv[2]));
 		while (!argv[2][i])
 		{
 			send_byte(pid, argv[2][i]);
