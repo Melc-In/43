@@ -18,13 +18,20 @@ int	get_len_mess(int signum)
 	static int bit_len;
 
 	bit_len++;
-	if (bit_len == 31)
-	{
-		byte_len <<= 1;
-		byte_len |= (signum == SIGUSR1);
-		return (byte_len);
-	}
-	return (bit_len);
+	byte_len <<= 1;
+	byte_len |= (signum == SIGUSR1);
+	if (bit_len == 32)
+		return (byte_len)
+	return (0);
+}
+
+void	s_handler(int signum)
+{
+	static int	byte = 0;
+
+	byte <<= 1;
+	byte |= (signum == SIGUSR1);
+	// et la byte = len du message (32 premiers bits)
 }
 
 void	s_handler(int signum)
@@ -36,22 +43,22 @@ void	s_handler(int signum)
 	static int	i = 0;
 
 	bit++;
-	if (ft_strlen(message) == len_mess)
-	{
-		ft_putstr_fd(message, 1);
-		bit = 42;
-	}
 	if (bit <= 31)
 	{
 		len_mess = get_len_mess(signum);
-		message = ft_calloc(len_mess, 1);
-		bit++;
+		if (len_mess != 0)
+			message = ft_calloc(len_mess, 1);
 	}
-	if (bit == 40)
+	if (bit >= 32)
 	{
 		byte <<= 1;
 		byte |= (signum == SIGUSR1);
+	}
+	if (bit == 40)
+	{
 		message[i] = byte;
+		if (byte == '\0')
+			ft_putstrfd_(message, 1);
 		byte = 0;
 		bit = 32;
 		i++;
