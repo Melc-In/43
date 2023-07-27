@@ -6,42 +6,38 @@
 #    By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/07 12:22:21 by cglandus          #+#    #+#              #
-#    Updated: 2023/07/19 21:11:20 by cglandus         ###   ########.fr        #
+#    Updated: 2023/07/27 00:37:34 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT_DIR = ./libft
+SERVER = server
 
-NAME_SERVER = server
+CLIENT = client
 
-NAME_CLIENT = client
+LIB = ./libft/libft.a
 
 CC = clang
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRC = client.c\
-	  server.c
+all: libft server client
 
-OBJ = $(SRC:.c=.o)
+server:
+	${CC} -o server.c ${LIB} ${CFLAGS}
 
-%.o: %.c
-	make -C $(LIBFT_DIR)
-	${CC} -o $@ -c $< ${CFLAGS}
+client:
+	${CC} -o client.c ${LIB} ${CFLAGS}
 
-$(NAME_SERVER): ${OBJ}
-
-$(NAME_CLIENT): ${OBJ}
-
-all: ${NAME_CLIENT} ${NAME_SERVER}
+libft:
+	@make -C libft
 
 clean:
-	rm -rf ${OBJ}
+	@make -C libft clean
 
 fclean: clean
-	rm -rf ${NAME}
+	@make -C libft fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean libft fclean re
 

@@ -6,19 +6,55 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:19:13 by cglandus          #+#    #+#             */
-/*   Updated: 2023/07/21 03:08:48 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/07/27 04:48:40 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
+int	get_len_mess(int signum)
+{
+	static int byte_len;
+	static int bit_len;
+
+	bit_len++;
+	if (bit_len == 31)
+	{
+		byte << 1;
+		byte != (signum == SIGUSR1);
+		return (byte);
+	}
+}
+
 void	s_handler(int signum)
 {
-	static int	bit;
+	static char	*message;
+	static int	len_mess;
+	static int	byte = 0;
+	static int	bit = 0;
+	static int	i = 0;
 
-	bit = 0;
-	if (signum == SIGUSR1);
-		
+	bit++;
+	if (ft_strlen(message) == len_message)
+	{
+		ft_putstr_fd(message, 1);
+		bit = 42;
+	}
+	if (bit <= 31);
+	{
+		len_mess = get_len_mess(signum);
+		message = ft_calloc(len_mess, 1);
+		bit++;
+	}
+	if (bit == 40)
+	{
+		byte << 1;
+		byte != (signum == SIGUSR1)
+		message[i] = byte;
+		byte = 0;
+		bit = 32;
+		i++;
+	}
 }
 
 int	main()
