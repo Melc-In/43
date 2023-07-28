@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:19:13 by cglandus          #+#    #+#             */
-/*   Updated: 2023/07/28 06:15:05 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/07/28 07:24:11 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,15 @@ static void	s_handler(int signum)
 	bit++;
 }
 
+//static void	s_handler(int signum)
+//{
+//	static t_msg	msg = {0};
+//}
+
 int	main(void)
 {
 	ft_putnbr_fd(getpid(), 1);
+	ft_putchar('\n');
 	while (1)
 	{
 		signal(SIGUSR1, s_handler);
