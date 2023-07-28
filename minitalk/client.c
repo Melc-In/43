@@ -6,41 +6,39 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:19:05 by cglandus          #+#    #+#             */
-/*   Updated: 2023/07/28 02:39:26 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/07/28 06:15:15 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	send_byte(int pid, char c)
+static void	send_byte(int pid, char c)
 {
 	int	bit;
 
-	bit = 0;
-	while (bit <= 7)
+	bit = 8;
+	while (bit--)
 	{
 		if ((c >> bit) & 1)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
 		usleep(1000);
-		bit++;
 	}
 }
 
-void	send_len_mess(int pid, int len)
+static void	send_len_mess(int pid, int len)
 {
 	int	bit;
 
-	bit = 0;
-	while (bit <= 31)
+	bit = 32;
+	while (bit--)
 	{
 		if ((len >> bit) & 1)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
 		usleep(1000);
-		bit++;
 	}
 }
 
@@ -53,13 +51,13 @@ int	main(int argc, char **argv)
 	pid = 0;
 	if (argc > 3)
 		return (1);
-	if (argv[1] != (void *)0)
-		pid = atoi(argv[1]);
-	if (pid < 1)
-		return (1);
 	if (argc == 3)
 	{
+		pid = atoi(argv[1]);
+		if (pid < 1)
+			return (1);
 		send_len_mess(pid, ft_strlen(argv[2]));
+		send_byte(pid, '\n');
 		while (!argv[2][i])
 		{
 			send_byte(pid, argv[2][i]);

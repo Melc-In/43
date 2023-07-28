@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/07 12:22:21 by cglandus          #+#    #+#              #
-#    Updated: 2023/07/28 02:45:05 by cglandus         ###   ########.fr        #
+#    Updated: 2023/07/28 06:16:12 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,10 @@ all: libft ${NAME}
 $(NAME): server client
 
 server:
-	${CC} -o server server.c ${LIB} ${CFLAGS} -g
+	${CC} -o server server.c ${LIB} ${CFLAGS}
 
 client:
-	${CC} -o client client.c ${LIB} ${CFLAGS} -g
+	${CC} -o client client.c ${LIB} ${CFLAGS}
 
 libft:
 	@make -C libft
