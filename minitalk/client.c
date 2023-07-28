@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:19:05 by cglandus          #+#    #+#             */
-/*   Updated: 2023/07/27 08:30:43 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/07/28 02:39:26 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	send_byte(int pid, char c)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(100);
+		usleep(1000);
 		bit++;
 	}
 }
@@ -39,7 +39,7 @@ void	send_len_mess(int pid, int len)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(100);
+		usleep(1000);
 		bit++;
 	}
 }
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	pid = 0;
 	if (argc > 3)
 		return (1);
-	if (argv[1])
+	if (argv[1] != (void *)0)
 		pid = atoi(argv[1]);
 	if (pid < 1)
 		return (1);

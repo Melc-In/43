@@ -6,13 +6,11 @@
 #    By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/07 12:22:21 by cglandus          #+#    #+#              #
-#    Updated: 2023/07/27 08:26:01 by cglandus         ###   ########.fr        #
+#    Updated: 2023/07/28 02:45:05 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SERVER = server
-
-CLIENT = client
+NAME = minitalk
 
 LIB = ./libft/libft.a
 
@@ -20,10 +18,12 @@ CC = clang
 
 CFLAGS = -Wall -Werror -Wextra
 
-all: libft server client
+all: libft ${NAME}
+
+$(NAME): server client
 
 server:
-	${CC} -o server server.c ${LIB} ${CFLAGS}
+	${CC} -o server server.c ${LIB} ${CFLAGS} -g
 
 client:
 	${CC} -o client client.c ${LIB} ${CFLAGS} -g
@@ -34,7 +34,7 @@ libft:
 clean:
 	@make -C libft clean
 
-fclean: clean
+fclean:
 	rm -rf client server
 	@make -C libft fclean
 

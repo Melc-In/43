@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:19:13 by cglandus          #+#    #+#             */
-/*   Updated: 2023/07/27 08:12:02 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/07/28 02:54:53 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,15 @@
 
 int	get_len_mess(int signum)
 {
-	static int byte_len;
-	static int bit_len;
+	static int byte_len = 0;
+	static int bit_len = 0;
 
 	bit_len++;
 	byte_len <<= 1;
 	byte_len |= (signum == SIGUSR1);
-	if (bit_len == 32)
-		return (byte_len)
+	if (bit_len == 31)
+		return (byte_len);
 	return (0);
-}
-
-void	s_handler(int signum)
-{
-	static int	byte = 0;
-
-	byte <<= 1;
-	byte |= (signum == SIGUSR1);
-	// et la byte = len du message (32 premiers bits)
 }
 
 void	s_handler(int signum)
@@ -46,8 +37,9 @@ void	s_handler(int signum)
 	if (bit <= 31)
 	{
 		len_mess = get_len_mess(signum);
+		ft_putnbr_fd(len_mess, 1);
 		if (len_mess != 0)
-			message = ft_calloc(len_mess, 1);
+			message = ft_calloc(len_mess + 1, 1);
 	}
 	if (bit >= 32)
 	{
@@ -56,9 +48,9 @@ void	s_handler(int signum)
 	}
 	if (bit == 40)
 	{
-		message[i] = byte;
 		if (byte == '\0')
-			ft_putstrfd_(message, 1);
+			ft_putstr_fd(message, 1);
+		message[i] = byte;
 		byte = 0;
 		bit = 32;
 		i++;
