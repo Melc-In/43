@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:19:13 by cglandus          #+#    #+#             */
-/*   Updated: 2023/07/28 09:12:12 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/07/28 09:35:00 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ static void	s_handler(int signum)
 	byte <<= 1;
 	byte |= (signum == SIGUSR1);
 	bit_len++;
-	if (bit_len == 31)
+	if (bit_len == 32)
 	{
 		len_mess = byte;
 		message = ft_calloc(len_mess + 1, 1);
 		byte = 0;
 	}
-	if (bit_len > 31)
+	if (bit_len > 32)
 		bit++;
-	if (bit == 7)
+	if (bit == 8)
 	{
 		message[i] = byte;
 		i++;
