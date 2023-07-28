@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:19:05 by cglandus          #+#    #+#             */
-/*   Updated: 2023/07/28 08:46:07 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:14:16 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	send_message(int pid, char *message)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(1000);
+		usleep(100);
 	}
 	while (message[++i])
 	{
@@ -36,7 +36,7 @@ static void	send_message(int pid, char *message)
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
-			usleep(1000);
+			usleep(100);
 		}
 	}
 }

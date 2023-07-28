@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:19:13 by cglandus          #+#    #+#             */
-/*   Updated: 2023/07/28 09:35:00 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:11:28 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,11 @@ static void	s_handler(int signum)
 	{
 		message[i] = byte;
 		i++;
-		if (byte == '\0')
+		if ((byte == '\0') || (i == len_mess))
 		{
 			ft_putstr_fd(message, 1);
 			free(message);
 			bit_len = 0;
-			len_mess = 0;
 			i = 0;
 		}
 		byte = 0;
