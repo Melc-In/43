@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:22 by cglandus          #+#    #+#             */
-/*   Updated: 2023/07/31 09:36:11 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/07/31 09:58:55 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	quote_handler(char *arg, size_t i)
 		return (0);
 	while (arg[i++])
 	{
-		if(!ft_isdigit(arg[i]))
+		if (!ft_isdigit(arg[i]))
 			return (0);
 	}
 	ft_putstr_fd(splited_arg, 1);
