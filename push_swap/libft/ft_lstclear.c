@@ -1,13 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/30 23:37:25 by cglandus          #+#    #+#             */
-/*   Updated: 2023/07/31 07:00:45 by cglandus         ###   ########.fr       */
+/*   Created: 2022/11/17 15:47:18 by cglandus          #+#    #+#             */
+/*   Updated: 2022/11/17 18:27:58 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
+
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*tmp;
+
+	if (!lst || !del)
+		return ;
+	tmp = *lst;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		ft_lstdelone(*lst, del);
+		*lst = tmp;
+	}
+}
