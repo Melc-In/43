@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:09:53 by cglandus          #+#    #+#             */
-/*   Updated: 2023/07/28 09:02:24 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/07/28 21:07:08 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@
 
 typedef struct s_msg
 {
-	char	*message;
-	int		len_mess;
-	int		byte;
-	int		bit;
-	int		i;
+	char			*message;
+	int				len_mess;
+	unsigned int	byte;
+	int				bit_len;
+	int				bit;
+	int				i;
 
 }	t_msg;
 

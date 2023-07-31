@@ -6,52 +6,47 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:19:13 by cglandus          #+#    #+#             */
-/*   Updated: 2023/07/28 10:11:28 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/07/28 20:56:21 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static void	s_handler(int signum)
+static void	read_len(int *len_mess, char **message, unsigned int *byte)
 {
-	static char	*message;
-	static int	len_mess = 0;
-	static int	bit_len = 0;
-	static int	byte = 0;
-	static int	bit = 0;
-	static int	i = 0;
-
-	byte <<= 1;
-	byte |= (signum == SIGUSR1);
-	bit_len++;
-	if (bit_len == 32)
-	{
-		len_mess = byte;
-		message = ft_calloc(len_mess + 1, 1);
-		byte = 0;
-	}
-	if (bit_len > 32)
-		bit++;
-	if (bit == 8)
-	{
-		message[i] = byte;
-		i++;
-		if ((byte == '\0') || (i == len_mess))
-		{
-			ft_putstr_fd(message, 1);
-			free(message);
-			bit_len = 0;
-			i = 0;
-		}
-		byte = 0;
-		bit = 0;
-	}
+	*len_mess = *byte + 1;
+	*message = ft_calloc(*len_mess, 1);
+	if (*message == NULL)
+		ft_putstr_fd("malloc failed", 2);
+	*byte = 0;
 }
 
-//static void	s_handler(int signum)
-//{
-//	static t_msg	msg = {0};
-//}
+static void	s_handler(int signum)
+{
+	static t_msg	msg = {0};
+
+	msg.byte <<= 1;
+	msg.byte |= (signum == SIGUSR1);
+	msg.bit_len++;
+	if (msg.bit_len == 32)
+		read_len(&msg.len_mess, &msg.message, &msg.byte);
+	if (msg.bit_len > 32)
+		msg.bit++;
+	if (msg.bit == 8)
+	{
+		msg.message[msg.i] = msg.byte;
+		msg.i++;
+		if (msg.byte == 0)
+		{
+			ft_putstr_fd(msg.message, 1);
+			free(msg.message);
+			msg.bit_len = 0;
+			msg.i = 0;
+		}
+		msg.byte = 0;
+		msg.bit = 0;
+	}
+}
 
 int	main(void)
 {
