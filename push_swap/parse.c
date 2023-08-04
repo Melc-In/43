@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:22 by cglandus          #+#    #+#             */
-/*   Updated: 2023/07/31 09:58:55 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/08/04 07:23:22 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,36 @@ static int	check_args(char *arg)
 	return (0);
 }
 
-int	parsing(char **args)
+static int	no_quotes(char *arg)
+{
+	if (ft_strlen(arg != 1)
+			return (1);
+	ft_atoi(arg[0])))
+	//check si c un nombre signé ou pas
+	// + check si il est pas deja dans ma pile
+}
+
+int	parsing(int ac, char **args)
 {
 	size_t	i;
 
 	i = 1;
-	while (args[i])
+	if (ac > 2)
 	{
-		if (check_args(args[i]))
-			return (1);
-		else
+		while (args[i])
+		{
+			if (!no_quote(args[i]))
+				return (0);
+			i++;
+		}
+		return (1);
+	}
+	if (args[i])
+	{
+		if (!check_arg(*args[i]))
 			return (0);
-		i++;
-	}	
+		else
+			return (1);
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:38:20 by cglandus          #+#    #+#             */
-/*   Updated: 2023/07/31 08:44:18 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/08/04 07:01:00 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "libft/libft.h"
 
-int	parsing(char **args);
+int	parsing(int ac, char **args);
 
 #endif
