@@ -6,14 +6,14 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 18:03:34 by cglandus          #+#    #+#             */
-/*   Updated: 2022/11/17 16:39:55 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/11/11 00:16:59 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# define T_NULL ((void *)0)
+# define T_NULL 0
 # include <stdlib.h>
 # include <stdint.h>
 # include <limits.h>

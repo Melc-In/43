@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 23:38:02 by cglandus          #+#    #+#              #
-#    Updated: 2023/07/31 09:58:05 by cglandus         ###   ########.fr        #
+#    Updated: 2023/08/04 06:18:51 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,10 @@ OBJ = $(SRC:.c=.o)
 all: libft ${NAME}
 
 $(NAME): ${OBJ}
-	?
+	${CC} -o ${NAME} ${LIBFT} ${OBJ} ${CFAGS}
 
 %.o: %.c
-	${CC} -o $@ -c $< ${LIBFT} ${CFLAGS}
+	${CC} -o $@ -c $< ${CFLAGS}
 
 libft:
 	@make -C libft

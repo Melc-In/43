@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:15 by cglandus          #+#    #+#             */
-/*   Updated: 2023/08/04 07:05:00 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/11/10 23:42:28 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error \n", 1);
 		return (1);
 	}
-	if (parsing(argc, argv))
+	if (!parsing(argc, argv))
 	{
 		//sort 
 		return (0);

@@ -1,33 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 17:32:07 by cglandus          #+#    #+#             */
-/*   Updated: 2023/11/11 00:00:10 by cglandus         ###   ########.fr       */
+/*   Created: 2023/11/13 17:11:53 by cglandus          #+#    #+#             */
+/*   Updated: 2023/11/13 17:13:16 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strnstr(const char *big, const char *little, size_t len)
-{
-	size_t	i;
-	size_t	len_s2;
-
-	i = 0;
-	if ((!big && len == 0) || !*little)
-		return ((char *)big);
-	len_s2 = ft_strlen((char *)little);
-	while (*big && i <= len)
-	{
-		if (ft_strncmp(big, little, len_s2) == 0)
-			if (len_s2 + i <= len)
-				return ((char *)big);
-		big++;
-		i++;
-	}
-	return (T_NULL);
-}
+void
