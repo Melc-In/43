@@ -6,13 +6,13 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 19:08:03 by cglandus          #+#    #+#             */
-/*   Updated: 2022/11/14 07:26:53 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/06 22:33:44 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int				i;
 	int				sign;

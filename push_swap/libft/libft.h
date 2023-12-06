@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 18:03:34 by cglandus          #+#    #+#             */
-/*   Updated: 2023/11/11 00:16:59 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/06 22:34:04 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
 
-int		ft_atoi(const char *str);
+long	ft_atoi(const char *str);
 char	*ft_itoa(int n);
 size_t	ft_strlcat(char *dest, const char *src, size_t n);
 size_t	ft_strlcpy(char *dest, const char *src, size_t n);
