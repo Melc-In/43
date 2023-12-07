@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
+/*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:38:20 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/06 20:24:09 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/07 23:05:43 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
-# define INT_MAX 2147483647
-# define INT_MIN -2147483648
 
 typedef struct s_stack
 {
@@ -23,6 +21,6 @@ typedef struct s_stack
 	size_t	size;
 }			t_stack;
 
-int	parsing(int ac, char **args);
+int	parsing(int ac, char **args, t_stack *s);
 
 #endif

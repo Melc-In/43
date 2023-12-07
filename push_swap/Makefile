@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+         #
+#    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 23:38:02 by cglandus          #+#    #+#              #
-#    Updated: 2023/08/04 06:18:51 by cglandus         ###   ########.fr        #
+#    Updated: 2023/12/07 23:18:20 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,14 +20,15 @@ CFLAGS = -Wall -Werror -Wextra
 
 SRC = push_swap.c\
 	  parse.c\
-	  operations.c
+	  operations.c\
+	  utils.c
 
 OBJ = $(SRC:.c=.o)
 
 all: libft ${NAME}
 
 $(NAME): ${OBJ}
-	${CC} -o ${NAME} ${LIBFT} ${OBJ} ${CFAGS}
+	${CC} -o ${NAME} ${OBJ} ${LIBFT} ${CFLAGS}
 
 %.o: %.c
 	${CC} -o $@ -c $< ${CFLAGS}
