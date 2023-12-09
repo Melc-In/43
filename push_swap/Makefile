@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 23:38:02 by cglandus          #+#    #+#              #
-#    Updated: 2023/12/07 23:18:20 by cglandus         ###   ########.fr        #
+#    Updated: 2023/12/09 05:30:31 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ clean:
 	rm -rf ${OBJ}
 	@make -C libft clean
 
-fclean:
+fclean: clean
 	rm -rf push_swap
 	@make -C libft fclean
 
