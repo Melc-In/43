@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:33:12 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/11 18:06:08 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/14 14:12:33 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_number(char *str)
 	size_t	i;
 
 	i = 0;
-	if (str[i] == '-')
+	if (str[i] == '-' || str[i] == '+')
 		i++;
 	if (str[i] == '\0')
 		return (0);

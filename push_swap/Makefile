@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 23:38:02 by cglandus          #+#    #+#              #
-#    Updated: 2023/12/11 15:50:44 by cglandus         ###   ########.fr        #
+#    Updated: 2023/12/14 19:47:46 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ CFLAGS = -Wall -Werror -Wextra
 SRC = push_swap.c\
 	  parse.c\
 	  operations.c\
+	  doperations.c\
+	  sortalgo.c\
 	  utils.c
 
 OBJ = $(SRC:.c=.o)
@@ -31,7 +33,7 @@ $(NAME): ${OBJ}
 	${CC} -o ${NAME} ${OBJ} ${LIBFT} ${CFLAGS}
 
 %.o: %.c
-	${CC} -o $@ -c $< ${CFLAGS}
+	${CC} -o $@ -c -g $< ${CFLAGS}
 
 libft:
 	@make -C libft
