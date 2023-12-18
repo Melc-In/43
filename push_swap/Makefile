@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 23:38:02 by cglandus          #+#    #+#              #
-#    Updated: 2023/12/14 19:47:46 by cglandus         ###   ########.fr        #
+#    Updated: 2023/12/18 16:36:59 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ $(NAME): ${OBJ}
 	${CC} -o ${NAME} ${OBJ} ${LIBFT} ${CFLAGS}
 
 %.o: %.c
-	${CC} -o $@ -c -g $< ${CFLAGS}
+	${CC} -o $@ -c $< ${CFLAGS}
 
 libft:
 	@make -C libft

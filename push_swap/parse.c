@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:22 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/14 20:28:04 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/18 16:35:58 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 static	void	free_split(char **tab, size_t size)
 {
 	size_t	i;
+
+	i = 0;
 	while (i < size)
 	{
-		free(*tab[i]);
+		free(tab[i]);
 		i++;
 	}
 	free(tab);
 }
+
 static int	check_args(char *arg, t_stack *a)
 {
 	size_t	i;
@@ -38,7 +41,7 @@ static int	check_args(char *arg, t_stack *a)
 	}
 	while (tab[i])
 	{
-		if (is_number(tab[i]) && !in_stack(a, ft_atoi(tab[i])))
+		if (is_number(tab[j - 1]) && !in_stack(a, ft_atoi(tab[j - 1])))
 			a->nums[i] = ft_atoi(tab[j - 1]);
 		else
 		{
@@ -48,7 +51,7 @@ static int	check_args(char *arg, t_stack *a)
 		j--;
 		i++;
 	}
-	free(tab);
+	free_split(tab, a->size);
 	return (1);
 }
 

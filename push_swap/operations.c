@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:25 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/14 20:17:01 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/18 16:27:41 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,45 +64,3 @@ void    rotate(t_stack *s, char *mess)
     s->nums[0] = top;
     ft_putstr_fd(mess, 1);
 }
-
-/*
-int main()
-{
-    t_stack s;
-    int i;
-
-    i = 0;
-    s.nums = calloc(17 * sizeof(int), 1);
-    s.size = 17;
-    s.nums[0] = 1;
-    s.nums[1] = 2;
-    s.nums[2] = 3;
-    s.nums[3] = 4;
-    s.nums[4] = 5;
-    s.nums[5] = 6;
-    s.nums[6] = 7;
-    s.nums[7] = 8;
-    s.nums[8] = 9;
-    s.nums[9] = 10;
-    s.nums[10] = 11;
-    s.nums[11] = 12;
-    s.nums[12] = 13;
-    s.nums[13] = 14;
-    s.nums[14] = 15;
-    s.nums[15] = 16;
-    s.nums[16] = 17;
-    s.nums[17] = 18;
-    while (i < 17)
-    {
-        printf("%d\n", s.nums[i]);
-        i++;
-    }
-    rotate(&s, "\nra\n\n");
-    i = 0;
-    while (i < 17)
-    {
-        printf("%d\n", s.nums[i]);
-        i++;
-    }
-    return (0);
-}*/
