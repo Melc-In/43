@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:22 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/18 16:35:58 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/18 22:55:21 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,16 @@ static int	check_args(char *arg, t_stack *a)
 	{
 		a->nums = ft_calloc(size_stack(tab), sizeof(int));
 		a->size = size_stack(tab);
+		a->filled = 0;
 		j = size_stack(tab);
 	}
 	while (tab[i])
 	{
 		if (is_number(tab[j - 1]) && !in_stack(a, ft_atoi(tab[j - 1])))
+		{
+			a->filled++;
 			a->nums[i] = ft_atoi(tab[j - 1]);
+		}
 		else
 		{
 			free_split(tab, a->size);
@@ -61,8 +65,6 @@ int	parsing(int ac, char **args, t_stack *s)
 	{
 		if (check_args(args[1], s))
 			return (1);
-		else
-			return (0);
 	}
 	return (0);
 }

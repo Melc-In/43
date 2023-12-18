@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:38:20 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/14 20:09:14 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/18 22:55:01 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ typedef struct s_stack
 {
 	int		*nums;
 	size_t	size;
+	size_t	filled;
 }			t_stack;
 
 int		parsing(int ac, char **args, t_stack *s);
+void    butterfly_sort(t_stack *a);
 
 int		is_number(char *str);
 int		in_stack(t_stack *stack, int n);

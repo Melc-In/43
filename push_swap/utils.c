@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:33:12 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/18 16:33:30 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/18 22:54:54 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	in_stack(t_stack *stack, int n)
 	size_t	i;
 
 	i = 0;
-	while (stack->nums[i])
+	while (i < stack->filled)
 	{
 		if (stack->nums[i] == n)
 			return (1);

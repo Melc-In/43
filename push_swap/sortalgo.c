@@ -6,14 +6,12 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:58:04 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/18 16:36:26 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/18 22:55:33 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*static *void    turkish_sort(t_stack *a)
+void    butterfly_sort(t_stack *a)
 {
-    
-}*/
-
+}

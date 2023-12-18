@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:15 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/18 16:35:56 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/18 22:55:25 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int	main(int argc, char **argv)
 	i = 0;
 	a.size = 0;
 	if (argc < 2)
-	{
-		ft_putstr_fd("Error\n", 1);
 		return (1);
-	}
 	if (parsing(argc, argv, &a))
 	{
 		while (i < a.size)
