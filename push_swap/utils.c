@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:33:12 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/18 22:54:54 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/20 00:15:50 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,24 @@ size_t	size_stack(char **tab)
 	while (tab[i])
 		i++;
 	return (i);
+}
+
+int	is_sorted(t_stack *stack)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 1;
+	while (i < stack->size)
+	{
+		while (j < stack->size)
+		{
+			if (!(stack->nums[i] > stack->nums[j]))
+				return (0);
+			j++;
+		}
+		i--;
+	}
+	return (1);
 }

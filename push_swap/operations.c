@@ -6,13 +6,13 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:25 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/18 16:27:41 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/20 00:15:54 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int    pop(t_stack *a)
+static int  pop(t_stack *a)
 {
     int top;
 
@@ -20,16 +20,17 @@ int    pop(t_stack *a)
         return (0);
     top = a->nums[a->size - 1];
     a->size--;
+    a->filled--;
     return (top);
 }
 
-void    swap(t_stack *s, char *mess)
+void    swap(t_stack *stack, char *mess)
 {
     int temp;
 
-    temp = s->nums[s->size - 1];
-    s->nums[s->size - 1] = s->nums[s->size - 2];
-    s->nums[s->size - 2] = temp;
+    temp = stack->nums[stack->size - 1];
+    stack->nums[stack->size - 1] = stack->nums[stack->size - 2];
+    stack->nums[stack->size - 2] = temp;
     ft_putstr_fd(mess, 1);
 }
 
@@ -43,24 +44,24 @@ void    push(t_stack *s1, t_stack *s2, char *mess)
     ft_putstr_fd(mess, 1);
 }
 
-void    rotate(t_stack *s, char *mess)
+void    rotate(t_stack *stack, char *mess)
 {
     size_t  i;
     size_t  j;
     int stash;
     int top;
 
-    i = s->size;
+    i = stack->size;
     j = i - 2;
-    top = s->nums[i - 1];
+    top = stack->nums[i - 1];
     while (i > 0)
     {
-        stash = s->nums[j];
-        s->nums[j] = s->nums[i - 1];
-        s->nums[i - 1] = stash;
+        stash = stack->nums[j];
+        stack->nums[j] = stack->nums[i - 1];
+        stack->nums[i - 1] = stash;
         i--;
         j--;
     }
-    s->nums[0] = top;
+    stack->nums[0] = top;
     ft_putstr_fd(mess, 1);
 }

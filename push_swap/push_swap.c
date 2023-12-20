@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:15 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/18 22:55:25 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/20 02:30:52 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (parsing(argc, argv, &a))
 	{
-		while (i < a.size)
-		{
-			ft_putnbr_fd(a.nums[i], 1);
-			ft_putchar_fd('\n', 1);
-			i++;
-		}
+		switch_algo(&a);
 		free(a.nums);
 		return (0);
 	}

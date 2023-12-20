@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 23:38:02 by cglandus          #+#    #+#              #
-#    Updated: 2023/12/18 22:54:58 by cglandus         ###   ########.fr        #
+#    Updated: 2023/12/20 02:38:15 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,15 +27,15 @@ SRC = push_swap.c\
 
 OBJ = $(SRC:.c=.o)
 
-all: libft ${NAME}
+all: $(LIBFT) ${NAME}
 
 $(NAME): ${OBJ}
 	${CC} -o ${NAME} ${OBJ} ${LIBFT} ${CFLAGS}
 
 %.o: %.c
-	${CC} -o $@ -c $< ${CFLAGS}
+	${CC} -o $@ -c -g $< ${CFLAGS}
 
-libft:
+$(LIBFT):
 	@make -C libft
 
 clean:

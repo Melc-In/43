@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 16:50:13 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/18 16:27:42 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/20 00:15:56 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void    rr(t_stack *a, t_stack *b)
     rotate(b, "r\n");
 }
 
-void    rrab(t_stack *s, char *mess)
+void    rrab(t_stack *stack, char *mess)
 {
     size_t  i;
     size_t  j;
@@ -33,16 +33,16 @@ void    rrab(t_stack *s, char *mess)
 
     i = 0;
     j = i + 1;
-    last = s->nums[0];
-    while (i < s->size)
+    last = stack->nums[0];
+    while (i < stack->size)
     {
-        stash = s->nums[j];
-        s->nums[j] = s->nums[i];
-        s->nums[i] = stash;
+        stash = stack->nums[j];
+        stack->nums[j] = stack->nums[i];
+        stack->nums[i] = stash;
         i++;
         j++;
     }
-    s->nums[s->size - 1] = last;
+    stack->nums[stack->size - 1] = last;
     ft_putstr_fd(mess, 1);
 }
 
