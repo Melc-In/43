@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
+/*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 19:08:03 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/06 22:33:44 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/31 13:17:18 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,10 @@ long	ft_atoi(const char *str)
 	}
 	while (ft_isdigit(str[i]))
 	{
-		if (result * 10 + str[i] - '0' < result && sign == -1)
-			return (0);
-		if (result * 10 + str[i] - '0' < result && sign == 1)
-			return (-1);
 		result = result * 10 + str[i] - '0';
 		i++;
 	}
+	if (result > INT_MAX)
+		return (2147483648);
 	return (result * sign);
 }

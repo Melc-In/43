@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+         #
+#    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/13 21:05:17 by cglandus          #+#    #+#              #
-#    Updated: 2022/11/23 01:09:53 by cglandus         ###   ########.fr        #
+#    Updated: 2023/12/30 22:49:21 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

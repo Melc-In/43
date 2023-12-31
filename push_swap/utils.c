@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:33:12 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/20 00:15:50 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/31 12:55:37 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	is_number(char *str)
 		i++;
 	if (str[i] == '\0')
 		return (0);
-	if (ft_atoi(str) > INT_MAX || ft_atoi(str) < INT_MIN)
+	if (ft_atoi(str) > INT_MAX || ft_atoi(str) < INT_MIN
+		|| ft_atoi(str) == 2147483648)
 		return (0);
 	while (i < ft_strlen(str))
 	{
@@ -32,7 +33,7 @@ int	is_number(char *str)
 	return (1);
 }
 
-int	in_stack(t_stack *stack, int n)
+int	in_stack(t_stack *stack, long n)
 {
 	size_t	i;
 

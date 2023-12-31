@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:15 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/20 02:30:52 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/31 13:48:30 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_stack	a;
-	size_t	i;
 
-	i = 0;
 	a.size = 0;
 	if (argc < 2)
 		return (1);
@@ -27,10 +25,7 @@ int	main(int argc, char **argv)
 		free(a.nums);
 		return (0);
 	}
-	else
-	{
-		ft_putstr_fd("Error\n", 1);
-		free(a.nums);
-		return (1);
-	}
+	ft_putstr_fd("Error\n", 1);
+	free(a.nums);
+	return (1);
 }

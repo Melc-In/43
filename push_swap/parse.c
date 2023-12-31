@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:22 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/20 23:51:37 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/31 13:48:26 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,8 @@ static	void	free_split(char **tab, size_t size)
 	free(tab);
 }
 
-static int	check_args(char *arg, t_stack *a)
+static int	stack_builder(char **tab, t_stack *a, size_t i, size_t j)
 {
-	size_t	i;
-	size_t	j;
-	char	**tab;
-
-	i = 0;
-	tab = ft_split(arg, ' ');
-	if (tab != NULL)
-	{
-		a->nums = ft_calloc(size_stack(tab), sizeof(int));
-		if (!a->nums)
-		{
-			free_split(tab, a->size);
-			return (0);
-		}
-		a->size = size_stack(tab);
-		a->filled = 0;
-		j = size_stack(tab);
-	}
 	while (tab[i])
 	{
 		if (is_number(tab[j - 1]) && !in_stack(a, ft_atoi(tab[j - 1])))
@@ -53,12 +35,34 @@ static int	check_args(char *arg, t_stack *a)
 			a->nums[i] = ft_atoi(tab[j - 1]);
 		}
 		else
-		{
-			free_split(tab, a->size);
 			return (0);
-		}
 		j--;
 		i++;
+	}
+	return (1);
+}
+
+static int	check_args(char *arg, t_stack *a)
+{
+	size_t	i;
+	size_t	j;
+	char	**tab;
+
+	i = 0;
+	tab = ft_split(arg, ' ');
+	a->nums = ft_calloc(size_stack(tab), sizeof(int));
+	if (!a->nums)
+	{
+		free_split(tab, a->size);
+		return (0);
+	}
+	a->size = size_stack(tab);
+	a->filled = 0;
+	j = size_stack(tab);
+	if (!stack_builder(tab, a, i, j))
+	{
+		free_split(tab, a->size);
+		return (0);
 	}
 	free_split(tab, a->size);
 	return (1);
