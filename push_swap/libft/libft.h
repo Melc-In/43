@@ -6,14 +6,17 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 18:03:34 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/31 04:41:59 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/31 16:41:44 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# define T_NULL 0
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
 # include <stdlib.h>
 # include <stdint.h>
 # include <limits.h>
@@ -73,5 +76,8 @@ t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list	*ft_lstnew(void *content);
 int		ft_lstsize(t_list *lst);
+
+char	*join(char *dest, char *src);
+char	*get_next_line(int fd);
 
 #endif

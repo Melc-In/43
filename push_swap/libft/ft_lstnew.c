@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
+/*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:17:35 by cglandus          #+#    #+#             */
-/*   Updated: 2022/11/11 15:21:08 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/31 16:43:16 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ t_list	*ft_lstnew(void *content)
 
 	node = (t_list *)malloc(sizeof(t_list));
 	if (!node)
-		return (T_NULL);
+		return (NULL);
 	node->content = content;
-	node->next = T_NULL;
+	node->next = NULL;
 	return (node);
 }

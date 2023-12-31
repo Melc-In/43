@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
+/*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 03:16:50 by cglandus          #+#    #+#             */
-/*   Updated: 2022/11/17 16:38:21 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/31 16:43:00 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_list	*ft_lstlast(t_list *lst)
 {
 	if (!lst)
-		return (T_NULL);
+		return (NULL);
 	while (lst->next)
 		lst = lst->next;
 	return (lst);

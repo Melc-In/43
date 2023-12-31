@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
+/*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 17:32:07 by cglandus          #+#    #+#             */
-/*   Updated: 2023/11/11 00:00:10 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/31 16:44:55 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 		big++;
 		i++;
 	}
-	return (T_NULL);
+	return (NULL);
 }

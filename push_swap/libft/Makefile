@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/13 21:05:17 by cglandus          #+#    #+#              #
-#    Updated: 2023/12/30 22:49:21 by cglandus         ###   ########.fr        #
+#    Updated: 2023/12/31 16:41:41 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,9 @@ SRC = ft_atoi.c\
 	  ft_strtrim.c\
 	  ft_substr.c\
 	  ft_tolower.c\
-	  ft_toupper.c
+	  ft_toupper.c\
+	  get_next_line_utils.c\
+	  get_next_line.c
 
 SRCB = ft_lstadd_back.c\
 	   ft_lstadd_front.c\

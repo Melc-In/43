@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
+/*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:08:24 by cglandus          #+#    #+#             */
-/*   Updated: 2022/11/17 18:27:37 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/31 16:43:10 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*map;
 
 	if (!del || !lst)
-		return (T_NULL);
-	map = T_NULL;
+		return (NULL);
+	map = NULL;
 	while (lst)
 	{
 		save = ft_lstnew(f(lst->content));
 		if (!save)
 		{
 			ft_lstclear(&map, del);
-			return (T_NULL);
+			return (NULL);
 		}
 		ft_lstadd_back(&map, save);
 		lst = lst->next;

@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 02:31:18 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/09 06:12:00 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/31 16:47:20 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ char	**ft_split(char const *s, char c)
 	size_t	i[2];
 
 	if (!s)
-		return (T_NULL);
+		return (NULL);
 	array = (char **)ft_calloc(nb_words(s, c) + 1, sizeof(char *));
 	if (!array)
-		return (T_NULL);
+		return (NULL);
 	i[0] = 0;
 	i[1] = 0;
 	while (s[i[0]])

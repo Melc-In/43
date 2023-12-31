@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
+/*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 19:14:25 by cglandus          #+#    #+#             */
-/*   Updated: 2022/11/11 01:23:33 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/31 16:43:26 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	s2 = (unsigned char *)s;
 	i = 0;
 	if (n == 0)
-		return (T_NULL);
+		return (NULL);
 	while (i < n)
 	{
 		if ((unsigned char)s2[i] == (unsigned char)c)
 			return (s2 + i);
 		i++;
 	}
-	return (T_NULL);
+	return (NULL);
 }

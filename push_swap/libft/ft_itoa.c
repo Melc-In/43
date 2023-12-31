@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
+/*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:52:48 by cglandus          #+#    #+#             */
-/*   Updated: 2022/11/14 02:08:01 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/31 16:42:48 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*ft_itoa(int n)
 	i = nb_digit(n);
 	result = ft_calloc(i + 2, 1);
 	if (!result)
-		return (T_NULL);
+		return (NULL);
 	if (n == 0)
 	{
 		result[i] = '0';

@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 06:55:06 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/31 13:53:29 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/31 17:08:38 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,17 @@ static void	operator_switch(t_stack *s1, t_stack *s2, char *arg)
 
 static void	checker(t_stack *s1, t_stack *s2, char *arg)
 {
-	read(1, arg, 5);
+	arg = get_next_line(0);
 	while (!is_sorted(s1))
 	{
 		operator_switch(s1, s2, arg);
+		free(arg);
 		if (is_sorted(s1))
 			break ;
-		read(1, arg, 5);
+		arg = get_next_line(0);
 	}
+	if (arg)
+		free(arg);
 	if (is_sorted(s1) && s2->filled == 0)
 		ft_putstr_fd("OK\n", 1);
 	else
@@ -63,19 +66,25 @@ int	main(int argc, char **argv)
 {
 	t_stack	s1;
 	t_stack	s2;
-	char	*arg;
+	char	*arg = NULL;
 
-	arg = ft_calloc(5, 1);
 	s1.size = 0;
 	if (argc < 2)
 		return (1);
 	if (parsing(argc, argv, &s1))
 	{
+		if (is_sorted(&s1))
+		{
+			ft_putstr_fd("OK\n", 1);
+			free(s1.nums);
+			return(0);
+		}
 		s2.nums = ft_calloc(s1.size, sizeof(int));
 		s2.size = s1.size;
 		s2.filled = 0;
 		checker(&s1, &s2, arg);
 		free(arg);
+		free(s1.nums);
 		free(s2.nums);
 		return (0);
 	}

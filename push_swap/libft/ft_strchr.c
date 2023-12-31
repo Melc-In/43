@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
+/*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 17:22:59 by cglandus          #+#    #+#             */
-/*   Updated: 2022/11/11 01:24:15 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/31 16:38:05 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 char	*ft_strchr(const char *s, int c)
 {
+	if (!s)
+		return (NULL);
 	while (*s)
 	{
 		if (*s == (char)c)
@@ -22,5 +24,5 @@ char	*ft_strchr(const char *s, int c)
 	}
 	if (*s == '\0' && c == '\0')
 		return ((char *)s);
-	return (T_NULL);
+	return (NULL);
 }

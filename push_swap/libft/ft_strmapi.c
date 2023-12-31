@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
+/*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 16:16:00 by cglandus          #+#    #+#             */
-/*   Updated: 2022/11/13 23:24:39 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/31 16:44:47 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 	i = 0;
 	if (!s || !f)
-		return (T_NULL);
+		return (NULL);
 	out = malloc(ft_strlen(s) * sizeof(char) + 1);
 	if (!out)
-		return (T_NULL);
+		return (NULL);
 	while (s[i])
 	{
 		out[i] = f(i, s[i]);
