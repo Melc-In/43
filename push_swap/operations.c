@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:25 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/31 17:10:24 by cglandus         ###   ########.fr       */
+/*   Updated: 2023/12/31 17:28:01 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,16 @@ void	swap(t_stack *stack, char *mess)
 void	push(t_stack *s1, t_stack *s2, char *mess)
 {
 	int	n;
+	int	top;
 
-	n = pop(s1);
-	s2->size++;
-	s2->nums[s2->size - 1] = n;
+	if (s1->size == 0)
+		return (0);
+	top = s1->nums[s1->size - 1];
+	s1->size--;
+	s1->filled--;
+	s2->size++; //AAAAA 
+	s2->filled++;
+	s2->nums[s2->size - 1] = top;
 	ft_putstr_fd(mess, 1);
 }
 
