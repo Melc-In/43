@@ -6,23 +6,11 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:25 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/31 17:28:01 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/01 18:01:33 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	pop(t_stack *a)
-{
-	int	top;
-
-	if (a->size == 0)
-		return (0);
-	top = a->nums[a->size - 1];
-	a->size--;
-	a->filled--;
-	return (top);
-}
 
 void	swap(t_stack *stack, char *mess)
 {
@@ -36,11 +24,10 @@ void	swap(t_stack *stack, char *mess)
 
 void	push(t_stack *s1, t_stack *s2, char *mess)
 {
-	int	n;
 	int	top;
 
 	if (s1->size == 0)
-		return (0);
+		return ;
 	top = s1->nums[s1->size - 1];
 	s1->size--;
 	s1->filled--;
