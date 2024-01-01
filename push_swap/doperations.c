@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 16:50:13 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/31 12:40:18 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/01 21:35:50 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	rrab(t_stack *stack, char *mess)
 	int		last;
 
 	i = 0;
-	j = i + 1;
+	j = 1;
 	last = stack->nums[0];
 	while (i < stack->size)
 	{

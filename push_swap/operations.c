@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:25 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/01 18:01:33 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/01 21:35:08 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	rotate(t_stack *stack, char *mess)
 	int		stash;
 	int		top;
 
-	if (stack->filled > 0)
+	if (stack->filled > 1)
 	{
 		i = stack->size;
 		j = i - 2;

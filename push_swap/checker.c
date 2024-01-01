@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 06:55:06 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/01 20:37:15 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/01 21:47:49 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int	main(int argc, char **argv)
 		s2.size = s1.size;
 		s2.filled = 0;
 		checker(&s1, &s2, arg);
-		free(s1.nums);
 		free(s2.nums);
 		return (0);
 	}
