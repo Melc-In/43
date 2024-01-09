@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:58:04 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/09 03:06:43 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/09 23:28:22 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,14 @@ static void	under6_handler(t_stack *a, t_stack *b)
 		return ;
 	}
 	if (a->size == 3)
-		handle_3(a, get_max(a));
-	free(b->nums);
+		handle_3(a, get_max_min(a, 0));
+	else if	(a->size == 4)
+	{
+		if (get_max_min(a, 1) == 0)
+			//realised i could just push the max in b sort then in a and then rotate to get the max as the last el...
+		handle_3(a, get_max_min(a, 0));
+
+	}
 }
 
 void	switch_algo(t_stack *a)
@@ -52,6 +58,11 @@ void	switch_algo(t_stack *a)
 	b.nums = ft_calloc(a->size, sizeof(int));
 	b.size = a->size;
 	b.filled = 0;
+	if (is_sorted(a))
+	{
+		free(b.nums);
+		return ;
+	}
 	if (a->size < 6 && a->size > 0)
 	{
 		under6_handler(a, &b);
@@ -60,11 +71,12 @@ void	switch_algo(t_stack *a)
 	{
 		//butterfly_sort(a, b)
 	}
+	free(b.nums);
 }
 /*static void normalize_stack(t_stack *a)
 {
 }
-ize - 1]))
+
 static void    butterfly_sort(t_stack *a, t_stack *b)
 {
     normalize_stack(a);
