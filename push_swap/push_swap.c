@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:15 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/31 13:48:30 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/09 01:57:31 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int	main(int argc, char **argv)
 
 	a.size = 0;
 	if (argc < 2)
-		return (1);
+		return (-1);
 	if (parsing(argc, argv, &a))
 	{
 		switch_algo(&a);
 		free(a.nums);
 		return (0);
 	}
-	ft_putstr_fd("Error\n", 1);
+	ft_putstr_fd("Error\n", 2);
 	free(a.nums);
-	return (1);
+	return (-1);
 }

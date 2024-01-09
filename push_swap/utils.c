@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:33:12 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/31 12:55:37 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/09 01:57:33 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,20 @@ int	is_sorted(t_stack *stack)
 		i--;
 	}
 	return (1);
+}
+
+size_t	get_max(t_stack *stack)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (j < stack->size)
+	{
+		if (stack->nums[i] < stack->nums[j])
+			i = j;	
+		j++;
+	}
+	return (i);
 }

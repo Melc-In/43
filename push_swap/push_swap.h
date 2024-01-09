@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:38:20 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/31 10:13:50 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/09 01:57:29 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int		is_number(char *str);
 int		in_stack(t_stack *stack, long n);
 size_t	size_stack(char **tab);
 int		is_sorted(t_stack *stack);
+size_t	get_max(t_stack *stack);
 
 void	swap(t_stack *stack, char *mess);
 void	push(t_stack *s1, t_stack *s2, char *mess);

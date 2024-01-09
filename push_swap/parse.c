@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:22 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/01 21:57:09 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/09 01:57:34 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ static int	no_quote(char **arg, t_stack *a)
 	size_t	i;
 	size_t	j;
 
-	i = 0;
-	j = size_stack(arg);
-	a->nums = ft_calloc(size_stack(arg), sizeof(int));
+	i = 1;
+	j = size_stack(arg) - 1;
+	a->nums = ft_calloc(size_stack(arg) - 1, sizeof(int));
 	if (!a->nums)
 		return (0);
 	a->size = size_stack(arg) - 1;

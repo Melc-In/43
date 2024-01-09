@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 23:38:02 by cglandus          #+#    #+#              #
-#    Updated: 2023/12/31 14:47:34 by cglandus         ###   ########.fr        #
+#    Updated: 2024/01/03 15:50:09 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,32 +38,34 @@ OBJ = $(SRC:.c=.o)
 
 OBJB = $(SRCB:.c=.o)
 
-all: libft ${NAME}
+all: libft $(NAME)
 
 bonus: libft $(BONUS)
 
 %.o: %.c
-	${CC} -o $@ -c -g $< ${CFLAGS}
+	$(CC) -o $@ -c -g $< $(CFLAGS)
 
-$(NAME): ${OBJ}
-	${CC} -o ${NAME} ${OBJ} ${LIBFT} ${CFLAGS}
+$(NAME): $(OBJ)
+	$(CC) -o $(NAME) $(OBJ) ${LIBFT} ${CFLAGS}
 
-$(BONUS): ${OBJB}
-	${CC} -o $(BONUS) -g ${OBJB} ${LIBFT} ${CFLAGS}
+$(BONUS): $(OBJB)
+	$(CC) -o $(BONUS) -g $(OBJB) $(LIBFT) $(CFLAGS)
 
 libft:
 	@make -C libft --no-print-directory
 
 clean:
-	rm -rf ${OBJ}
-	rm -rf $(OBJB)
+	@rm -rf $(OBJ)
+	@rm -rf $(OBJB)
 	@make -C libft clean
 
 fclean: clean
-	rm -rf ${NAME}
-	rm -rf $(BONUS)
+	@rm -rf ${NAME}
+	@rm -rf $(BONUS)
 	@make -C libft fclean
 
 re: fclean all
 
-.PHONY: all clean libft fclean re bonus
+reb: fclean all bonus
+
+.PHONY: all clean libft fclean re reb bonus
