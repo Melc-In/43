@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:33:12 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/09 23:18:11 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/12 04:40:40 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	in_stack(t_stack *stack, long n)
 	size_t	i;
 
 	i = 0;
-	while (i < stack->filled)
+	while (i < stack->size)
 	{
 		if (stack->nums[i] == n)
 			return (1);
@@ -62,13 +62,14 @@ int	is_sorted(t_stack *stack)
 	size_t	i;
 	size_t	j;
 
-	i = 0;
-	j = 1;
-	while (i < stack->size)
+	i = stack->size - 1;
+	j = 0;
+	while (i > 0)
 	{
-		while (j < stack->size)
+		j = 0;
+		while (j < i)
 		{
-			if (!(stack->nums[i] > stack->nums[j]))
+			if (stack->nums[i] > stack->nums[j])
 				return (0);
 			j++;
 		}
@@ -77,23 +78,13 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-size_t	get_max_min(t_stack *stack, int	boo)
+size_t	get_max(t_stack *stack)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
 	j = 0;
-	if (boo == 1)
-	{
-		while (j < stack->size)
-		{
-			if (stack->nums[i] > stack->nums[j])
-				i = j;	
-			j++;
-		}
-		return (i);
-	}
 	while (j < stack->size)
 	{
 		if (stack->nums[i] < stack->nums[j])

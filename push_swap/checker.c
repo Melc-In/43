@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 06:55:06 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/09 01:57:56 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/12 04:34:30 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	checker(t_stack *s1, t_stack *s2, char *arg)
 		}
 		free(arg);
 	}
-	if (is_sorted(s1) && s2->filled == 0)
+	if (is_sorted(s1))
 	{
 		ft_putstr_fd("OK\n", 1);
 	}
@@ -85,7 +85,6 @@ int	main(int argc, char **argv)
 	{
 		s2.nums = ft_calloc(s1.size, sizeof(int));
 		s2.size = s1.size;
-		s2.filled = 0;
 		if (s2.nums)
 		{
 			checker(&s1, &s2, arg);
@@ -105,7 +104,6 @@ int	main()
 {
 	t_stack	a;
 
-	a.filled = 3;
 	a.size = 3;
 	a.nums = ft_calloc(3 , sizeof(int));
 	a.nums[0] = 0;

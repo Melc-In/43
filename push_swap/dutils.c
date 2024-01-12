@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   dutils.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/30 23:37:15 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/12 03:28:26 by cglandus         ###   ########.fr       */
+/*   Created: 2024/01/11 18:19:46 by cglandus          #+#    #+#             */
+/*   Updated: 2024/01/12 03:28:23 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+size_t	get_min(t_stack *stack)
 {
-	t_stack	a;
+	size_t	i;
+	size_t	j;
 
-	a.size = 0;
-	if (argc < 2)
-		return (-1);
-	if (parsing(argc, argv, &a))
+	i = 0;
+	j = 0;
+	while (j < stack->size)
 	{
-		switch_algo(&a);
-		free(a.nums);
-		return (0);
+		if (stack->nums[i] > stack->nums[j])
+			i = j;	
+		j++;
 	}
-	ft_putstr_fd("Error\n", 2);
-	free(a.nums);
-	return (-1);
+	return (i);
 }

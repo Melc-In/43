@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 23:38:02 by cglandus          #+#    #+#              #
-#    Updated: 2024/01/03 15:50:09 by cglandus         ###   ########.fr        #
+#    Updated: 2024/01/11 18:21:45 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,13 +26,13 @@ SRC = push_swap.c\
 	  doperations.c\
 	  sortalgo.c\
 	  utils.c\
+	  dutils.c
 
 SRCB = checker.c\
 		parse.c\
 		operations.c\
 		doperations.c\
-		sortalgo.c\
-		utils.c\
+		utils.c
 
 OBJ = $(SRC:.c=.o)
 

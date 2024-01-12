@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:58:04 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/09 23:28:22 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/12 04:27:27 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,29 @@ static void handle_3(t_stack *a, size_t max)
 	else if ((max == 0) && (a->nums[a->size - 1] > a->nums[1]))
 		swap(a, "sa\n");
 }
+static void	handle_4(t_stack *a, t_stack *b, size_t min)
+{
+	if (min == a->size - 1)
+		push(a, b, "pb\n");
+	else if (min == 2)
+	{
+		rotate(a, "ra\n");
+		push(a, b, "pb\n");
+	}
+	else if (min == 1)
+	{
+		rotate(a, "ra\n");
+		rotate(a, "ra\n");
+		push(a, b, "pb\n");
+	}
+	else if (min == 0)
+	{
+		rrab(a, "rra\n");
+		push(a, b, "pb\n");
+	}
+	handle_3(a, get_max(a));
+	push(b, a, "pa\n");
+}
 
 static void	under6_handler(t_stack *a, t_stack *b)
 {
@@ -41,13 +64,16 @@ static void	under6_handler(t_stack *a, t_stack *b)
 		return ;
 	}
 	if (a->size == 3)
-		handle_3(a, get_max_min(a, 0));
+		handle_3(a, get_max(a));
 	else if	(a->size == 4)
+		handle_4(a, b, get_min(a));
+	else if (a->size == 5)
 	{
-		if (get_max_min(a, 1) == 0)
-			//realised i could just push the max in b sort then in a and then rotate to get the max as the last el...
-		handle_3(a, get_max_min(a, 0));
-
+		while (get_min(a) != 4)
+			rotate(a, "ra\n");
+		push(a, b, "pb\n");
+		handle_4(a, b, get_min(a));
+		push(b, a, "pa\n");
 	}
 }
 
@@ -56,11 +82,11 @@ void	switch_algo(t_stack *a)
 	t_stack	b;
 
 	b.nums = ft_calloc(a->size, sizeof(int));
-	b.size = a->size;
-	b.filled = 0;
+	b.size = 0;
 	if (is_sorted(a))
 	{
 		free(b.nums);
+		b.nums = NULL;
 		return ;
 	}
 	if (a->size < 6 && a->size > 0)
