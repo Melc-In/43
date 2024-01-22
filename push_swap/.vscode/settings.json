@@ -6,6 +6,8 @@
         "initializer_list": "c",
         "ranges": "c",
         "span": "c",
-        "utility": "c"
-    }
+        "utility": "c",
+        "libft.h": "c"
+    },
+    "cmake.configureOnOpen": false
 }

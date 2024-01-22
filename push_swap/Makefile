@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 23:38:02 by cglandus          #+#    #+#              #
-#    Updated: 2024/01/11 18:21:45 by cglandus         ###   ########.fr        #
+#    Updated: 2024/01/18 18:25:44 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,15 +23,15 @@ CFLAGS = -Wall -Werror -Wextra
 SRC = push_swap.c\
 	  parse.c\
 	  operations.c\
-	  doperations.c\
+	  operations2.c\
 	  sortalgo.c\
-	  utils.c\
-	  dutils.c
+	  sort_tools.c\
+	  utils.c
 
 SRCB = checker.c\
 		parse.c\
 		operations.c\
-		doperations.c\
+		operations2.c\
 		utils.c
 
 OBJ = $(SRC:.c=.o)

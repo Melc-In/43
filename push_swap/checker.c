@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 06:55:06 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/12 04:34:30 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/22 15:49:43 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	checker(t_stack *s1, t_stack *s2, char *arg)
 		}
 		free(arg);
 	}
-	if (is_sorted(s1))
+	if (is_sorted(*s1))
 	{
 		ft_putstr_fd("OK\n", 1);
 	}

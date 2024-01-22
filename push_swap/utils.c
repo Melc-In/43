@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:33:12 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/12 04:40:40 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/22 22:19:37 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,40 @@ int	is_number(char *str)
 	return (1);
 }
 
-int	in_stack(t_stack *stack, long n)
+int	in_stack(t_stack stack, long n)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < stack->size)
+	while (i < stack.size)
 	{
-		if (stack->nums[i] == n)
+		if (stack.nums[i] == n)
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
+int	is_sorted(t_stack stack)
+{
+	size_t	i;
+	size_t	j;
+
+	i = stack.size - 1;
+	j = 0;
+	while (i > 0)
+	{
+		j = 0;
+		while (j < i)
+		{
+			if (stack.nums[i] > stack.nums[j])
+				return (0);
+			j++;
+		}
+		i--;
+	}
+	return (1);
+}
 size_t	size_stack(char **tab)
 {
 	size_t	i;
@@ -57,39 +77,30 @@ size_t	size_stack(char **tab)
 	return (i);
 }
 
-int	is_sorted(t_stack *stack)
+int	*trim_stack(t_stack *stack, size_t n)
 {
-	size_t	i;
-	size_t	j;
-
-	i = stack->size - 1;
-	j = 0;
-	while (i > 0)
-	{
-		j = 0;
-		while (j < i)
-		{
-			if (stack->nums[i] > stack->nums[j])
-				return (0);
-			j++;
-		}
-		i--;
-	}
-	return (1);
-}
-
-size_t	get_max(t_stack *stack)
-{
+	t_stack	cpy;
 	size_t	i;
 	size_t	j;
 
 	i = 0;
 	j = 0;
-	while (j < stack->size)
+	cpy.nums = ft_calloc(stack->size - 1, sizeof(int));
+	cpy.size = stack->size - 1;
+	while (i < cpy.size)
 	{
-		if (stack->nums[i] < stack->nums[j])
-			i = j;	
+		if (i != n)
+			cpy.nums[i] = stack->nums[j];
+		else if (j + 1 == stack->size)
+			break ;
+		else if (i == n)
+		{
+			cpy.nums[i] = stack->nums[j + 1];
+			j++;
+		}
+		i++;
 		j++;
 	}
-	return (i);
+	free(stack->nums);
+	return (cpy.nums);
 }

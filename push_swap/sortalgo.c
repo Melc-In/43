@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:58:04 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/12 04:27:27 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/22 19:40:34 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void handle_3(t_stack *a, size_t max)
 	else if ((max == 0) && (a->nums[a->size - 1] > a->nums[1]))
 		swap(a, "sa\n");
 }
+
 static void	handle_4(t_stack *a, t_stack *b, size_t min)
 {
 	if (min == a->size - 1)
@@ -51,7 +52,7 @@ static void	handle_4(t_stack *a, t_stack *b, size_t min)
 		rrab(a, "rra\n");
 		push(a, b, "pb\n");
 	}
-	handle_3(a, get_max(a));
+	handle_3(a, get_max(*a));
 	push(b, a, "pa\n");
 }
 
@@ -59,20 +60,20 @@ static void	under6_handler(t_stack *a, t_stack *b)
 {
 	if (a->size == 2 || a->size == 1)
 	{
-		if (!is_sorted(a))
+		if (!is_sorted(*a))
 			swap(a, "sa\n");
 		return ;
 	}
 	if (a->size == 3)
-		handle_3(a, get_max(a));
+		handle_3(a, get_max(*a));
 	else if	(a->size == 4)
-		handle_4(a, b, get_min(a));
+		handle_4(a, b, get_min(*a));
 	else if (a->size == 5)
 	{
-		while (get_min(a) != 4)
+		while (get_min(*a) != 4)
 			rotate(a, "ra\n");
 		push(a, b, "pb\n");
-		handle_4(a, b, get_min(a));
+		handle_4(a, b, get_min(*a));
 		push(b, a, "pa\n");
 	}
 }
@@ -83,27 +84,18 @@ void	switch_algo(t_stack *a)
 
 	b.nums = ft_calloc(a->size, sizeof(int));
 	b.size = 0;
-	if (is_sorted(a))
+	if (is_sorted(*a))
 	{
 		free(b.nums);
-		b.nums = NULL;
 		return ;
 	}
-	if (a->size < 6 && a->size > 0)
+	else if (a->size < 6 && a->size > 0)
 	{
 		under6_handler(a, &b);
 	}
-	else if (a->size > 6 && a->size > 0)
+	else if (a->size >= 6 && a->size > 0)
 	{
-		//butterfly_sort(a, b)
+		butterfly_sort(a, &b);
 	}
 	free(b.nums);
 }
-/*static void normalize_stack(t_stack *a)
-{
-}
-
-static void    butterfly_sort(t_stack *a, t_stack *b)
-{
-    normalize_stack(a);
-}*/

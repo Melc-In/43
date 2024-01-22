@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:22 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/12 04:27:24 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/22 15:53:05 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	stack_builder(char **tab, t_stack *a, size_t i, size_t j)
 {
 	while (tab[i])
 	{
-		if (is_number(tab[j - 1]) && !in_stack(a, ft_atoi(tab[j - 1])))
+		if (is_number(tab[j - 1]) && !in_stack(*a, ft_atoi(tab[j - 1])))
 			a->nums[i] = ft_atoi(tab[j - 1]);
 		else
 			return (0);
@@ -48,7 +48,7 @@ static int	check_args(char *arg, t_stack *a)
 	i = 0;
 	tab = ft_split(arg, ' ');
 	a->nums = ft_calloc(size_stack(tab), sizeof(int));
-	if (!a->nums)
+	if (!a->nums || size_stack(tab) == 0 || !tab)
 	{
 		free_split(tab, a->size);
 		return (0);
@@ -72,12 +72,12 @@ static int	no_quote(char **arg, t_stack *a)
 	i = 0;
 	j = size_stack(arg);
 	a->nums = ft_calloc(size_stack(arg) - 1, sizeof(int));
-	if (!a->nums)
+	if (!a->nums || size_stack(arg) == 0)
 		return (0);
 	a->size = size_stack(arg) - 1;
 	while (i < a->size || j - 1 > 0)
 	{
-		if (is_number(arg[j - 1]) && !in_stack(a, ft_atoi(arg[j - 1])))
+		if (is_number(arg[j - 1]) && !in_stack(*a, ft_atoi(arg[j - 1])))
 			a->nums[i] = ft_atoi(arg[j - 1]);
 		else
 			return (0);
