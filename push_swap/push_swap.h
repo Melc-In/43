@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:38:20 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/23 17:48:48 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/24 21:11:42 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,11 @@ typedef struct s_stack
 int		parsing(int ac, char **args, t_stack *stack);
 void	switch_algo(t_stack *a);
 
+size_t	size_stack(char **tab);
 int		is_number(char *str);
 int		in_stack(t_stack stack, long n);
-int		in_tab(int *tab, int n);
 int		is_sorted(t_stack stack);
-//int		*trim_stack(t_stack *stack, size_t n);
 
-size_t	size_stack(char **tab);
 size_t	get_max(t_stack stack);
 size_t	get_min(t_stack stack);
 void    butterfly_sort(t_stack *a, t_stack *b);

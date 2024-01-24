@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:19:46 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/23 22:33:38 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/24 23:50:49 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,6 @@ size_t	get_min(t_stack stack)
 	return (i);
 }
 
-static size_t	get_min_exep(t_stack stack, int	*exep, size_t n_elements)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	while (j < stack.size)
-	{
-		if (stack.nums[i] > stack.nums[j] && !in_tab(exep, j))
-			i = j;
-		if (n_elements == stack.size - 1)
-		{
-			printf("CACA");
-			i = j;
-		}
-		j++;
-	}
-	return (i);
-}
-
 static int	*tab_copy(int *tab, size_t tab_size)
 {
 	size_t	i;
@@ -84,43 +63,41 @@ static int	*tab_copy(int *tab, size_t tab_size)
 	return(tab_cpy);
 }
 
+size_t	get_next_min(t_stack stack, size_t min)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (j < stack.size)
+	{
+		if (stack.nums[i] > stack.nums[j] && (j != min && stack.nums[min] < stack.nums[j]))
+			i = j;
+		j++;		
+	}
+	return (i);
+}
+
 static void	normalize_stack(t_stack *a)
 {
 	t_stack	cpy;
 	size_t	i;
-	size_t	t_filled;
-	int		*tab;
-	int		j; //test
+	size_t	min;
 
 	i = 1;
-	t_filled = 0;
-	j = 0; //test
-	tab = ft_calloc(a->size, sizeof(int));
 	cpy.nums = tab_copy(a->nums, a->size);
 	cpy.size = a->size;
-	if (!cpy.nums || !tab)
+	if (!cpy.nums)
 	{
 		free(cpy.nums);
-		free(tab);
 		return ;
 	}
+	min = get_min(*a);
 	while (i < a->size + 1)
 	{
-		a->nums[get_min_exep(cpy, tab, t_filled)] = (int)i;
-		j = 0; //test
-		printf("---\n"); //test
-		printf("Min LIST :\n"); //test
-		while (j < (int)a->size) //test
-		{
-			printf("%d\n", tab[j]); //test
-			j++; //test
-		}
-		printf("---\n"); //test
-		//cpy.nums = trim_stack(&cpy, get_min_exep(cpy, tab));
-		printf("CURRENT Min : %zu\n", get_min_exep(cpy, tab, t_filled)); //test
-		tab[i - 1] = get_min_exep(cpy, tab, t_filled);
-		t_filled++;
-		printf("---\n"); //test
+		a->nums[min] = (int)i;
+		min = get_next_min(cpy, min);
 		i++;
 	}
 }
@@ -132,18 +109,24 @@ void    butterfly_sort(t_stack *a, t_stack *b)
 
 	i = a->size - 1;
 	chunck_size = b->size;
+	printf("a : \n\n");
 	while (i >= 0)
 	{
-		printf("%d\n", a->nums[i]);
+		printf("[%d] ", a->nums[i]);
 		i--;
 	}
+	printf("\n");
+	printf("\n");
 	i = a->size - 1;
 	normalize_stack(a);
 	if (!a->nums)
 		return ;
+	printf("\n");
+	printf("a (normalized) : \n\n");
 	while (i >= 0)
 	{
-		printf("%d\n", a->nums[i]);
+		printf("[%d] ", a->nums[i]);
 		i--;
 	}
+	printf("\n");
 }

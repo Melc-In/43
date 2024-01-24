@@ -7,7 +7,10 @@
         "ranges": "c",
         "span": "c",
         "utility": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "random": "c",
+        "limits": "c",
+        "algorithm": "c"
     },
     "cmake.configureOnOpen": false
 }

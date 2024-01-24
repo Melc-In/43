@@ -6,11 +6,21 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:33:12 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/23 17:48:21 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/24 20:56:48 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+size_t	size_stack(char **tab)
+{
+	size_t	i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
+}
 
 int	is_number(char *str)
 {
@@ -47,20 +57,6 @@ int	in_stack(t_stack stack, long n)
 	return (0);
 }
 
-int	in_tab(int *tab, int n)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		if (tab[i] == n)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 int	is_sorted(t_stack stack)
 {
 	size_t	i;
@@ -81,35 +77,3 @@ int	is_sorted(t_stack stack)
 	}
 	return (1);
 }
-size_t	size_stack(char **tab)
-{
-	size_t	i;
-
-	i = 0;
-	while (tab[i])
-		i++;
-	return (i);
-}
-/*
-int	*trim_stack(t_stack *stack, size_t n)
-{
-	t_stack	cpy;
-	size_t	i;
-
-	i = 0;
-	cpy.nums = ft_calloc(stack->size - 1, sizeof(int));
-	cpy.size = stack->size - 1;
-	while (i < cpy.size)
-	{
-		if (i != n)
-			cpy.nums[i] = stack->nums[i];
-		else if (i == n)
-		{
-			cpy.nums[i] = stack->nums[i + 1];
-			i++;
-		}
-		i++;
-	}
-	free(stack->nums);
-	return (cpy.nums);
-}*/
