@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:38:20 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/24 21:11:42 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/29 23:45:00 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int		is_sorted(t_stack stack);
 size_t	get_max(t_stack stack);
 size_t	get_min(t_stack stack);
 void    butterfly_sort(t_stack *a, t_stack *b);
+
+void	normalize_stack(t_stack *a);
 
 void	swap(t_stack *stack, char *mess);
 void	push(t_stack *s1, t_stack *s2, char *mess);

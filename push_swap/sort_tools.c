@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:19:46 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/24 23:50:49 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/30 00:22:29 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,87 +46,48 @@ size_t	get_min(t_stack stack)
 	return (i);
 }
 
-static int	*tab_copy(int *tab, size_t tab_size)
+static size_t	chunk_switch(size_t size)
 {
-	size_t	i;
-	int	*tab_cpy;
-
-	tab_cpy = ft_calloc(tab_size, sizeof(int));
-	i = 0;
-	if (!tab_cpy || !tab)
-		return (NULL);
-	while (i < tab_size)
-	{
-		tab_cpy[tab_size - 1 - i] = tab[tab_size - 1 - i];
-		i++;
-	}
-	return(tab_cpy);
+	if (size <= 100)
+		return (5);
+	if (size <= 500)
+		return (9);
+	if (size > 500)
+		return (9);
+	return (5);
 }
 
-size_t	get_next_min(t_stack stack, size_t min)
+static void	push_chunk(t_stack *a, t_stack *b, size_t chunk_size, size_t i)
 {
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	while (j < stack.size)
+	while (b->size != (i + 1) * chunk_size && a->size > 0)
 	{
-		if (stack.nums[i] > stack.nums[j] && (j != min && stack.nums[min] < stack.nums[j]))
-			i = j;
-		j++;		
-	}
-	return (i);
-}
-
-static void	normalize_stack(t_stack *a)
-{
-	t_stack	cpy;
-	size_t	i;
-	size_t	min;
-
-	i = 1;
-	cpy.nums = tab_copy(a->nums, a->size);
-	cpy.size = a->size;
-	if (!cpy.nums)
-	{
-		free(cpy.nums);
-		return ;
-	}
-	min = get_min(*a);
-	while (i < a->size + 1)
-	{
-		a->nums[min] = (int)i;
-		min = get_next_min(cpy, min);
-		i++;
+		if (i * chunk_size <= (size_t)a->nums[a->size - 1] && 
+			(size_t)a->nums[a->size - 1] <= (i + 1) * chunk_size)
+			push(a, b,"pb\n");
+		else
+			rotate(a, "ra\n");
 	}
 }
 
 void    butterfly_sort(t_stack *a, t_stack *b)
 {
-	int	chunck_size;
-	int	i;
+	size_t	chunk_size;
+	size_t	i;
 
-	i = a->size - 1;
-	chunck_size = b->size;
-	printf("a : \n\n");
-	while (i >= 0)
-	{
-		printf("[%d] ", a->nums[i]);
-		i--;
-	}
-	printf("\n");
-	printf("\n");
-	i = a->size - 1;
+	chunk_size = a->size / chunk_switch(a->size);
+	i = 0;
 	normalize_stack(a);
-	if (!a->nums)
-		return ;
-	printf("\n");
-	printf("a (normalized) : \n\n");
-	while (i >= 0)
+	while (a->size)
 	{
-		printf("[%d] ", a->nums[i]);
-		i--;
+		push_chunk(a, b, chunk_size, i);
+		i++;
 	}
-	printf("\n");
+	while (b->size)
+	{
+		while (get_max(*b) != b->size - 1)
+		{
+			rotate(b, "rb\n");
+		}
+		push(b, a, "pa\n");
+	}
 }

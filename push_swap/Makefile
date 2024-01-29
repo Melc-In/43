@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 23:38:02 by cglandus          #+#    #+#              #
-#    Updated: 2024/01/22 23:49:19 by cglandus         ###   ########.fr        #
+#    Updated: 2024/01/29 16:54:43 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC = push_swap.c\
 	  operations2.c\
 	  sortalgo.c\
 	  sort_tools.c\
+	  normalizer.c\
 	  utils.c
 
 SRCB = checker.c\
