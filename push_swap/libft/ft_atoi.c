@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 19:08:03 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/23 17:31:38 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/30 22:56:12 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ long	ft_atoi(const char *str)
 	i = 0;
 	result = 0;
 	sign = 1;
-	while ((str[i] > 8 && str[i] < 14) || str[i] == 32 
-			|| (str[i] == '0' && ft_isdigit(str[i + 1])))
+	while ((str[i] > 8 && str[i] < 14) || str[i] == 32
+		|| (str[i] == '0' && ft_isdigit(str[i + 1])))
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{

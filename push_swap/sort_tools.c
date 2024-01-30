@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:19:46 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/30 00:22:29 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/30 22:51:33 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	get_max(t_stack stack)
 	while (j < stack.size)
 	{
 		if (stack.nums[i] < stack.nums[j])
-			i = j;	
+			i = j;
 		j++;
 	}
 	return (i);
@@ -40,7 +40,7 @@ size_t	get_min(t_stack stack)
 	while (j < stack.size)
 	{
 		if (stack.nums[i] > stack.nums[j])
-			i = j;	
+			i = j;
 		j++;
 	}
 	return (i);
@@ -61,15 +61,15 @@ static void	push_chunk(t_stack *a, t_stack *b, size_t chunk_size, size_t i)
 {
 	while (b->size != (i + 1) * chunk_size && a->size > 0)
 	{
-		if (i * chunk_size <= (size_t)a->nums[a->size - 1] && 
-			(size_t)a->nums[a->size - 1] <= (i + 1) * chunk_size)
-			push(a, b,"pb\n");
+		if (i * chunk_size <= (size_t)a->nums[a->size - 1]
+			&& (size_t)a->nums[a->size - 1] <= (i + 1) * chunk_size)
+			push(a, b, "pb\n");
 		else
 			rotate(a, "ra\n");
 	}
 }
 
-void    butterfly_sort(t_stack *a, t_stack *b)
+void	butterfly_sort(t_stack *a, t_stack *b)
 {
 	size_t	chunk_size;
 	size_t	i;

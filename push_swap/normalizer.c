@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:16:10 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/29 23:44:50 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/30 22:50:16 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	*tab_copy(int *tab, size_t tab_size)
 {
 	size_t	i;
-	int	*tab_cpy;
+	int		*tab_cpy;
 
 	tab_cpy = ft_calloc(tab_size, sizeof(int));
 	i = 0;
@@ -26,7 +26,7 @@ static int	*tab_copy(int *tab, size_t tab_size)
 		tab_cpy[tab_size - 1 - i] = tab[tab_size - 1 - i];
 		i++;
 	}
-	return(tab_cpy);
+	return (tab_cpy);
 }
 
 static int	in_tab(int n, int *tab, size_t size)
@@ -48,7 +48,7 @@ static int	is_next_min(int j, t_stack stack, int *exep, size_t filled)
 	size_t	i;
 
 	i = 0;
-	while(i < stack.size)
+	while (i < stack.size)
 	{
 		if (stack.nums[j] > stack.nums[i] && !in_tab(i, exep, filled))
 			return (0);
@@ -57,7 +57,7 @@ static int	is_next_min(int j, t_stack stack, int *exep, size_t filled)
 	return (1);
 }
 
-static size_t	get_next_min(t_stack stack, size_t min, int	*exep, size_t filled)
+static size_t	get_next_min(t_stack stack, size_t min, int	*exep, size_t fill)
 {
 	size_t	i;
 	size_t	j;
@@ -66,7 +66,8 @@ static size_t	get_next_min(t_stack stack, size_t min, int	*exep, size_t filled)
 	j = 0;
 	while (j < stack.size)
 	{
-		if (stack.nums[min] < stack.nums[j] && is_next_min(j, stack, exep, filled))
+		if (stack.nums[min] < stack.nums[j]
+			&& is_next_min(j, stack, exep, fill))
 			i = j;
 		j++;
 	}
@@ -98,6 +99,6 @@ void	normalize_stack(t_stack *a)
 		min = get_next_min(cpy, min, exep, i);
 		i++;
 	}
-    free(exep);
-    free(cpy.nums);
+	free(exep);
+	free(cpy.nums);
 }

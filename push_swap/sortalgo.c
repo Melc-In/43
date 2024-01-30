@@ -6,13 +6,13 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:58:04 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/29 23:45:03 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/30 22:46:58 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void handle_3(t_stack *a, size_t max)
+static void	handle_3(t_stack *a, size_t max)
 {
 	if ((max == a->size - 1) && (a->nums[0] > a->nums[1]))
 		rotate(a, "ra\n");
@@ -66,7 +66,7 @@ static void	under6_handler(t_stack *a, t_stack *b)
 	}
 	if (a->size == 3)
 		handle_3(a, get_max(*a));
-	else if	(a->size == 4)
+	else if (a->size == 4)
 		handle_4(a, b, get_min(*a));
 	else if (a->size == 5)
 	{

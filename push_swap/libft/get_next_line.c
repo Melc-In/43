@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:02:10 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/09 22:52:33 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/30 23:01:41 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@ static char	*cutter(char *stash, char *save, int i, int j)
 
 static char	*cut_stash(char *stash)
 {
-	char	*save = NULL;
+	char	*save;
 	int		i;
 	int		j;
 	int		b;
 
+	save = NULL;
 	i = 0;
 	j = 0;
 	b = 0;
@@ -110,7 +111,7 @@ char	*get_next_line(int fd)
 	if ((line && ft_strlen(line) == 0) || !line)
 	{
 		free(stash);
-		return(NULL);
+		return (NULL);
 	}
 	if (!stash)
 		return (NULL);

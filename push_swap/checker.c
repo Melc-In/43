@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 06:55:06 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/22 23:49:16 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/30 22:59:37 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,16 @@ static int	operator_switch(t_stack *s1, t_stack *s2, char *arg)
 	return (1);
 }
 
-static void	checker(t_stack *s1, t_stack *s2, char *arg)
+static void	checker(t_stack *s1, t_stack *s2)
 {
+	char	*arg;
+
+	arg = NULL;
 	while (1)
 	{
 		arg = get_next_line(0);
 		if (!arg)
 			break ;
-		
 		if (!operator_switch(s1, s2, arg))
 		{
 			free(arg);
@@ -76,7 +78,6 @@ int	main(int argc, char **argv)
 {
 	t_stack	s1;
 	t_stack	s2;
-	char	*arg = NULL;
 
 	s1.size = 0;
 	if (argc < 2)
@@ -87,7 +88,7 @@ int	main(int argc, char **argv)
 		s2.size = s1.size;
 		if (s2.nums)
 		{
-			checker(&s1, &s2, arg);
+			checker(&s1, &s2);
 			free(s2.nums);
 		}
 		free(s1.nums);
