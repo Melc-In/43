@@ -6,17 +6,32 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:33:12 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/29 23:44:55 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/31 23:44:40 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	free_split(char **tab, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
 
 size_t	size_stack(char **tab)
 {
 	size_t	i;
 
 	i = 0;
+	if (!tab)
+		return (i);
 	while (tab[i])
 		i++;
 	return (i);
@@ -43,12 +58,12 @@ int	is_number(char *str)
 	return (1);
 }
 
-int	in_stack(t_stack stack, long n)
+int	in_stack(t_stack stack, size_t filled, long n)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < stack.size && stack.nums[i])
+	while (i < filled)
 	{
 		if (stack.nums[i] == n)
 			return (1);

@@ -10,7 +10,8 @@
         "libft.h": "c",
         "random": "c",
         "limits": "c",
-        "algorithm": "c"
+        "algorithm": "c",
+        "stdio.h": "c"
     },
     "cmake.configureOnOpen": false
 }

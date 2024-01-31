@@ -6,13 +6,11 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:19:46 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/31 19:28:05 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/31 23:45:57 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-#include <stdio.h>
 
 size_t	get_max(t_stack stack)
 {
@@ -57,7 +55,7 @@ static size_t	chunk_switch(size_t size)
 	return (5);
 }
 
-size_t	to_push(t_stack s, size_t min, size_t max)
+static size_t	to_push(t_stack s, size_t min, size_t max)
 {
 	size_t	i;
 
@@ -78,12 +76,12 @@ static void	push_chunk(t_stack *a, t_stack *b, size_t chunk_size, size_t i)
 		if (i * chunk_size <= (size_t)a->nums[a->size - 1]
 			&& (size_t)a->nums[a->size - 1] <= (i + 1) * chunk_size)
 		{
-			if ((size_t)a->nums[a->size - 1] >= chunk_size * (i + 1) / 2)
+			if ((size_t)a->nums[a->size - 1] >= chunk_size * i + chunk_size / 2)
 				push(a, b, "pb\n");
 			else
 			{
 				push(a, b, "pb\n");
-				rrab(b, "rrb\n");
+				rotate(b, "rb\n");
 			}
 		}
 		else if (to_push(*a, chunk_size * i, chunk_size * (i + 1))

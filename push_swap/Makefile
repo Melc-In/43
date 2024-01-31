@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 23:38:02 by cglandus          #+#    #+#              #
-#    Updated: 2024/01/29 16:54:43 by cglandus         ###   ########.fr        #
+#    Updated: 2024/01/31 23:46:11 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,13 +44,13 @@ all: libft $(NAME)
 bonus: libft $(BONUS)
 
 %.o: %.c
-	$(CC) -o $@ -c -g $< $(CFLAGS)
+	$(CC) -o $@ -c $< $(CFLAGS)
 
 $(NAME): $(OBJ)
 	$(CC) -o $(NAME) $(OBJ) ${LIBFT} ${CFLAGS}
 
 $(BONUS): $(OBJB)
-	$(CC) -o $(BONUS) -g $(OBJB) $(LIBFT) $(CFLAGS)
+	$(CC) -o $(BONUS) $(OBJB) $(LIBFT) $(CFLAGS)
 
 libft:
 	@make -C libft --no-print-directory

@@ -6,30 +6,36 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:22 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/30 21:35:37 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/31 23:56:26 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	void	free_split(char **tab, size_t size)
+static	char	*ft_strjoin_free(char *s1, char *s2)
 {
-	size_t	i;
+	char	*s;
 
-	i = 0;
-	while (i < size)
+	if (ft_strlen(s2) == 0)
 	{
-		free(tab[i]);
-		i++;
+		free(s1);
+		return (NULL);
 	}
-	free(tab);
+	s = ft_strjoin(s1, s2);
+	free(s1);
+	return (s);
 }
 
-static int	stack_builder(char **tab, t_stack *a, size_t i, size_t j)
+static int	stack_builder(char **tab, t_stack *a)
 {
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = size_stack(tab);
 	while (tab[i])
 	{
-		if (is_number(tab[j - 1]) && !in_stack(*a, ft_atoi(tab[j - 1])))
+		if (is_number(tab[j - 1]) && !in_stack(*a, i, ft_atoi(tab[j - 1])))
 			a->nums[i] = ft_atoi(tab[j - 1]);
 		else
 			return (0);
@@ -39,13 +45,10 @@ static int	stack_builder(char **tab, t_stack *a, size_t i, size_t j)
 	return (1);
 }
 
-static int	check_args(char *arg, t_stack *a)
+static int	check_arg(char *arg, t_stack *a)
 {
-	size_t	i;
-	size_t	j;
 	char	**tab;
 
-	i = 0;
 	tab = ft_split(arg, ' ');
 	a->nums = ft_calloc(size_stack(tab), sizeof(int));
 	if (!a->nums || size_stack(tab) == 0 || !tab)
@@ -54,8 +57,7 @@ static int	check_args(char *arg, t_stack *a)
 		return (0);
 	}
 	a->size = size_stack(tab);
-	j = size_stack(tab);
-	if (!stack_builder(tab, a, i, j))
+	if (!stack_builder(tab, a))
 	{
 		free_split(tab, a->size);
 		return (0);
@@ -64,40 +66,50 @@ static int	check_args(char *arg, t_stack *a)
 	return (1);
 }
 
-static int	no_quote(char **arg, t_stack *a)
+int	multiple_args(char **args, char *all_args, int i, t_stack *stack)
 {
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = size_stack(arg);
-	a->nums = ft_calloc(size_stack(arg) - 1, sizeof(int));
-	if (!a->nums || size_stack(arg) == 0)
-		return (0);
-	a->size = size_stack(arg) - 1;
-	while (i < a->size || j - 1 > 0)
+	if (!all_args)
 	{
-		if (is_number(arg[j - 1]) && !in_stack(*a, ft_atoi(arg[j - 1])))
-			a->nums[i] = ft_atoi(arg[j - 1]);
-		else
+		free(all_args);
+		return (0);
+	}
+	all_args = ft_strjoin_free(all_args, " ");
+	while (args[i])
+	{
+		all_args = ft_strjoin_free(all_args, args[i]);
+		if (!all_args)
+		{
+			free(all_args);
 			return (0);
-		j--;
+		}
+		all_args = ft_strjoin_free(all_args, " ");
 		i++;
 	}
-	return (1);
+	if (check_arg(all_args, stack))
+		return (1);
+	return (0);
 }
 
 int	parsing(int ac, char **args, t_stack *stack)
 {
+	char	*all_args;
+	int		i;
+
+	i = 2;
 	if (args[1] && ac == 2)
 	{
-		if (check_args(args[1], stack))
+		if (check_arg(args[1], stack))
 			return (1);
 	}
 	if (ac > 2)
 	{
-		if (no_quote(args, stack))
+		all_args = ft_strdup(args[1]);
+		if (multiple_args(args, all_args, i, stack))
+		{
+			free(all_args);
 			return (1);
+		}
+		free(all_args);
 	}
 	return (0);
 }

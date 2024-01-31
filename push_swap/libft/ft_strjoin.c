@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 19:35:42 by cglandus          #+#    #+#             */
-/*   Updated: 2023/12/31 16:44:01 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/31 22:27:17 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!(s1 && s2))
 		return (NULL);
-	s3 = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	s3 = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, 1);
 	if (!s3)
 		return (NULL);
 	i = 0;

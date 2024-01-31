@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:58:04 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/30 22:46:58 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/01/31 23:44:49 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,12 @@ static void	under6_handler(t_stack *a, t_stack *b)
 	else if (a->size == 5)
 	{
 		while (get_min(*a) != 4)
-			rotate(a, "ra\n");
+		{
+			if (get_min(*a) >= 2)
+				rotate(a, "ra\n");
+			else
+				rrab(a, "rra\n");
+		}
 		push(a, b, "pb\n");
 		handle_4(a, b, get_min(*a));
 		push(b, a, "pa\n");
@@ -90,12 +95,8 @@ void	switch_algo(t_stack *a)
 		return ;
 	}
 	else if (a->size < 6 && a->size > 0)
-	{
 		under6_handler(a, &b);
-	}
 	else if (a->size >= 6 && a->size > 0)
-	{
 		butterfly_sort(a, &b);
-	}
 	free(b.nums);
 }
