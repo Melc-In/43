@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:22 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/31 23:56:26 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/01 22:13:12 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static	char	*ft_strjoin_free(char *s1, char *s2)
 {
 	char	*s;
 
-	if (ft_strlen(s2) == 0)
+	if (!s2 || ft_strlen(s2) == 0)
 	{
 		free(s1);
 		return (NULL);
@@ -77,16 +77,17 @@ int	multiple_args(char **args, char *all_args, int i, t_stack *stack)
 	while (args[i])
 	{
 		all_args = ft_strjoin_free(all_args, args[i]);
-		if (!all_args)
-		{
-			free(all_args);
+		if (all_args == NULL)
 			return (0);
-		}
 		all_args = ft_strjoin_free(all_args, " ");
 		i++;
 	}
 	if (check_arg(all_args, stack))
+	{
+		free(all_args);
 		return (1);
+	}
+	free(all_args);
 	return (0);
 }
 
@@ -105,11 +106,7 @@ int	parsing(int ac, char **args, t_stack *stack)
 	{
 		all_args = ft_strdup(args[1]);
 		if (multiple_args(args, all_args, i, stack))
-		{
-			free(all_args);
 			return (1);
-		}
-		free(all_args);
 	}
 	return (0);
 }

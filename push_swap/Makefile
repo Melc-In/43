@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 23:38:02 by cglandus          #+#    #+#              #
-#    Updated: 2024/01/31 23:46:11 by cglandus         ###   ########.fr        #
+#    Updated: 2024/02/01 22:13:05 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ all: libft $(NAME)
 bonus: libft $(BONUS)
 
 %.o: %.c
-	$(CC) -o $@ -c $< $(CFLAGS)
+	$(CC) -o $@ -c -g $< $(CFLAGS)
 
 $(NAME): $(OBJ)
 	$(CC) -o $(NAME) $(OBJ) ${LIBFT} ${CFLAGS}

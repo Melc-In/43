@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:15 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/31 23:35:02 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/01 22:13:07 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	ft_putstr_fd("Error\n", 2);
-	free(a.nums);
+	if (a.nums)
+		free(a.nums);
 	return (-1);
 }

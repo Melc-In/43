@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:58:04 by cglandus          #+#    #+#             */
-/*   Updated: 2024/01/31 23:44:49 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/01 22:13:17 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ void	switch_algo(t_stack *a)
 	t_stack	b;
 
 	b.nums = ft_calloc(a->size, sizeof(int));
+	if (!b.nums)
+		return ;
 	b.size = 0;
 	if (a->size == 0 || is_sorted(*a))
 	{
