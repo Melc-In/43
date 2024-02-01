@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:02:10 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/01 22:13:03 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/01 23:06:44 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ static char	*cut_stash(char *stash)
 		save = ft_calloc(1, 1);
 	else if (stash[i])
 		save = ft_calloc(ft_strlen(ft_strchr(stash, '\n')), 1);
-	else
-		save = ft_calloc(1, 1);
 	save = cutter(stash, save, i, j);
 	return (save);
 }

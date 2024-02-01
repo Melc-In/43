@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:15 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/01 22:13:07 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/01 23:31:34 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_stack	a;
 
+	a.nums = NULL;
 	a.size = 0;
 	if (argc < 2)
 		return (-1);
