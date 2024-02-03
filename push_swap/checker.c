@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 06:55:06 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/01 22:13:16 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/02 23:51:18 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static int	operator_switch(t_stack *s1, t_stack *s2, char *arg)
 	else if (ft_strncmp(arg, "ss\n", 5) == 0)
 		ss(s1, s2, "");
 	else if (ft_strncmp(arg, "pa\n", 5) == 0)
-		push(s1, s2, "");
-	else if (ft_strncmp(arg, "pb\n", 5) == 0)
 		push(s2, s1, "");
+	else if (ft_strncmp(arg, "pb\n", 5) == 0)
+		push(s1, s2, "");
 	else if (ft_strncmp(arg, "ra\n", 5) == 0)
 		rotate(s1, "");
 	else if (ft_strncmp(arg, "rb\n", 5) == 0)
@@ -61,7 +61,6 @@ static void	checker(t_stack *s1, t_stack *s2)
 		if (!operator_switch(s1, s2, arg))
 		{
 			free(arg);
-			ft_putstr_fd("Error\n", 2);
 			return ;
 		}
 		free(arg);
@@ -80,17 +79,20 @@ int	main(int argc, char **argv)
 	t_stack	s2;
 
 	s1.size = 0;
+	s1.nums = NULL;
 	if (argc < 2)
 		return (-1);
 	if (parsing(argc, argv, &s1))
 	{
 		s2.nums = ft_calloc(s1.size, sizeof(int));
-		s2.size = s1.size;
-		if (s2.nums)
+		s2.size = 0;
+		if (!s2.nums)
 		{
-			checker(&s1, &s2);
-			free(s2.nums);
+			free(s1.nums);
+			return (-1);
 		}
+		checker(&s1, &s2);
+		free(s2.nums);
 		free(s1.nums);
 		return (0);
 	}
@@ -99,20 +101,11 @@ int	main(int argc, char **argv)
 	return (-1);
 }
 /*
-#include <stdio.h>
-
-int	main()
-{
-	t_stack	a;
-
-	a.size = 3;
-	a.nums = ft_calloc(3 , sizeof(int));
-	a.nums[0] = 0;
-	a.nums[1] = 1;
-	a.nums[2] = -1;
-	rrab(&a, "rra\n");
-	if (is_sorted(&a))
-		printf("SORTED");
- 	free(a.nums);
-	return (0);
-}*/
+rra
+rra
+pb
+ra
+pb
+pa
+pa
+*/

@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 16:50:13 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/01 23:03:56 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/02 23:51:29 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,19 @@ void	rrab(t_stack *stack, char *mess)
 	i = 0;
 	j = 1;
 	last = stack->nums[0];
-	while (i < stack->size && j < stack->size)
+	if (stack->size > 0)
 	{
-		stash = stack->nums[j];
-		stack->nums[j] = stack->nums[i];
-		stack->nums[i] = stash;
-		i++;
-		j++;
+		while (i < stack->size && j < stack->size)
+		{
+			stash = stack->nums[j];
+			stack->nums[j] = stack->nums[i];
+			stack->nums[i] = stash;
+			i++;
+			j++;
+		}
+		stack->nums[stack->size - 1] = last;
+		ft_putstr_fd(mess, 1);
 	}
-	stack->nums[stack->size - 1] = last;
-	ft_putstr_fd(mess, 1);
 }
 
 void	rrr(t_stack *a, t_stack *b, char *mess)

@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:33:12 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/01 23:31:36 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/02 23:50:54 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,28 +63,29 @@ int	in_stack(t_stack stack, size_t filled, long n)
 int	is_sorted(t_stack stack)
 {
 	size_t	i;
-	size_t	j;
 
-	i = stack.size - 1;
-	j = 0;
-	while (i > 0)
+	i = 0;
+	while (i < stack.size - 1)
 	{
-		j = 0;
-		while (j < i)
-		{
-			if (stack.nums[i] > stack.nums[j])
-				return (0);
-			j++;
-		}
-		i--;
+		if (stack.nums[i] < stack.nums[i + 1])
+			return (0);
+		i++;
 	}
 	return (1);
 }
 
 int	contains_number(char *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	
+	if (!str)
+		return (0);
+	while (i < ft_strlen(str))
+	{
+		if (ft_isdigit(str[i]))
+			return (1);
+		i++;
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:38:20 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/01 23:31:01 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/02 23:50:20 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	free_split(char **tab, size_t size);
 int		is_number(char *str);
 int		in_stack(t_stack stack, size_t filled, long n);
 int		is_sorted(t_stack stack);
+int		contains_number(char *str);
 
 size_t	get_max(t_stack stack);
 size_t	get_min(t_stack stack);

@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:22 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/01 23:31:44 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/02 20:46:54 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,17 @@ static int	check_arg(char *arg, t_stack *a)
 
 int	multiple_args(char **args, char *all_args, int i, t_stack *stack)
 {
-	if (!all_args)
-	{
-		free(all_args);
-		return (0);
-	}
 	all_args = ft_strjoin_free(all_args, " ");
 	while (args[i])
 	{
 		all_args = ft_strjoin_free(all_args, args[i]);
 		if (all_args == NULL)
 			return (0);
+		if (!contains_number(args[i]))
+		{
+			free(all_args);
+			return (0);
+		}
 		all_args = ft_strjoin_free(all_args, " ");
 		i++;
 	}
@@ -105,6 +105,11 @@ int	parsing(int ac, char **args, t_stack *stack)
 	if (ac > 2)
 	{
 		all_args = ft_strdup(args[1]);
+		if (!all_args)
+		{
+			free(all_args);
+			return (0);
+		}
 		if (multiple_args(args, all_args, i, stack))
 			return (1);
 	}
