@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:33:12 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/02 23:50:54 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/04 00:32:41 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	is_sorted(t_stack stack)
 	size_t	i;
 
 	i = 0;
+	if (stack.size == 0)
+		return (0);
 	while (i < stack.size - 1)
 	{
 		if (stack.nums[i] < stack.nums[i + 1])

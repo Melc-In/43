@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:02:10 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/04 00:18:11 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/04 00:50:05 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,33 +107,15 @@ char	*get_next_line(int fd)
 		stash = get_line(stash, fd);
 	line = get_that_line(stash);
 	stash = cut_stash(stash);
-	if ((line && ft_strlen(line) == 0) || !line)
+	if ((line && ft_strlen(line) == 0) || !line || fd == 0)
 	{
 		free(stash);
+		stash = NULL;
+		if (fd == 0)
+			return (line);
 		return (NULL);
 	}
 	if (!stash)
 		return (NULL);
 	return (line);
 }
-
-#include <stdio.h>
-/*
-int	main()
-{
-	int i;
-	char	*line = NULL;
-
-	i = 0;
-	line = get_next_line(0);
-	while (line && i < 1)
-	{
-		printf("%s\n", line);
-		free(line);
-		line = get_next_line(0);
-		i++;
-	}
-	if (line)
-		free(line);
-	return (0);
-}*/

@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 06:55:06 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/02 23:51:18 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/04 00:40:39 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,16 @@ static void	checker(t_stack *s1, t_stack *s2)
 			break ;
 		if (!operator_switch(s1, s2, arg))
 		{
+			ft_putstr_fd("Error\n", 2);
 			free(arg);
 			return ;
 		}
 		free(arg);
 	}
-	if (is_sorted(*s1))
-	{
+	if (is_sorted(*s1) && s2->size == 0)
 		ft_putstr_fd("OK\n", 1);
-	}
 	else
-		ft_putstr_fd("KO\n", 2);
+		ft_putstr_fd("KO\n", 1);
 }
 
 int	main(int argc, char **argv)
