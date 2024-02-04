@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 23:38:02 by cglandus          #+#    #+#              #
-#    Updated: 2024/02/04 00:50:38 by cglandus         ###   ########.fr        #
+#    Updated: 2024/02/04 01:23:21 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIBFT = ./libft/libft.a
 
 CC = clang
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -DBUFFER_SIZE=1
 
 SRC = push_swap.c\
 	  parse.c\

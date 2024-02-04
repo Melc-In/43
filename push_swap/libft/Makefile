@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/13 21:05:17 by cglandus          #+#    #+#              #
-#    Updated: 2023/12/31 16:41:41 by cglandus         ###   ########.fr        #
+#    Updated: 2024/02/04 01:28:59 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 
 CC = clang
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -DBUFFER_SIZE=1
 
 SRC = ft_atoi.c\
 	  ft_bzero.c\

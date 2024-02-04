@@ -6,11 +6,12 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 06:55:06 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/04 00:40:39 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/04 01:36:05 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 static int	doperator_switch(t_stack *s1, t_stack *s2, char *arg)
 {

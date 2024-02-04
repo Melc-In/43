@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:02:10 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/04 00:50:05 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/04 01:35:44 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ static char	*cut_stash(char *stash)
 	if (stash[i] == '\n')
 		i++;
 	if (i == 0)
-		save = ft_calloc(1, 1);
+		save = NULL;
 	else if (stash[i])
 		save = ft_calloc(ft_strlen(ft_strchr(stash, '\n')), 1);
 	else
-		save = ft_calloc(1, 1);
+		save = NULL;
 	save = cutter(stash, save, i);
 	return (save);
 }
@@ -98,24 +98,22 @@ static char	*get_line(char *stash, int fd)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash = NULL;
-	char		*line;
+	char	*stash;
+	char	*line;
 
+	stash = NULL;
 	if (fd < 0 || fd > 1023 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!ft_strchr(stash, '\n'))
 		stash = get_line(stash, fd);
 	line = get_that_line(stash);
 	stash = cut_stash(stash);
-	if ((line && ft_strlen(line) == 0) || !line || fd == 0)
+	if ((line && ft_strlen(line) == 0) || !line)
 	{
 		free(stash);
 		stash = NULL;
-		if (fd == 0)
-			return (line);
-		return (NULL);
 	}
-	if (!stash)
+	if (!stash && !line)
 		return (NULL);
 	return (line);
 }
