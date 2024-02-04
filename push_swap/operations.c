@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 23:37:25 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/02 23:06:00 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/04 02:45:58 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	swap(t_stack *stack, char *mess)
 {
 	int	temp;
 
-	if (stack->size == 0)
+	if (stack->size < 2)
 		return ;
 	temp = stack->nums[stack->size - 1];
 	stack->nums[stack->size - 1] = stack->nums[stack->size - 2];
