@@ -3,33 +3,47 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
+#    By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/06 14:46:26 by cglandus          #+#    #+#              #
-#    Updated: 2024/02/12 20:36:15 by cglandus         ###   ########.fr        #
+#    Created: 2022/11/24 15:06:02 by cglandus          #+#    #+#              #
+#    Updated: 2022/12/20 22:50:43 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = so_long
+NAME = libftprintf.a
 
 CC = clang
 
-CFLAGS = -Wall -Werror -Wextra
-
-SRC = so_long.c\
-	  parser.c\
+SRC = absol.c\
+	  ft_bzero.c\
+	  ft_printf.c\
+	  ft_putchar_fd.c\
+	  ft_putnbr_base_fd.c\
+	  ft_putnbr_fd.c\
+	  ft_putstr_fd.c\
+	  print_hex.c\
+	  print_ints.c\
+	  print_ptr.c\
+	  print_uints.c
 
 OBJ = $(SRC:.c=.o)
 
-RED = \033[1;31m
-PURPLE = \033[1;35m
-GREEN = \033[1;32m
-
 %.o: %.c
-	@echo "$(GREEN)[Compiling] -> $<"
-	@$(CC) -o $@ -c $< $(CFLAGS)
+	${CC} -o $@ -c $< ${CFLAGS}
 
-all: $(NAME)
+all: ${NAME}
 
-$(NAME): $(OBJ)
-	
+$(NAME): ${OBJ}
+	@ar rc ${NAME} ${OBJ}
+	@ranlib ${NAME}
+
+clean:
+	rm -rf ${OBJ}
+
+fclean: clean
+	rm -rf ${NAME}
+
+re: fclean all
+
+.PHONY: all clean fclean re
+
