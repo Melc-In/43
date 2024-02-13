@@ -1,6 +1,5 @@
 push_swap/push_swap-testeur-max
 push_swap/visualizer-push-swap
-so_long/MacroLibX
 **/*.vscode
 **/*.o
 **/*.out
