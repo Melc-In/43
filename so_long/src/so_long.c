@@ -6,8 +6,23 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 03:28:45 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/06 17:24:28 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/14 03:18:43 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "so_long.h"
 
+int main(int argc, char **argv)
+{
+    t_map   map;
+    char    *parse_err;
+
+    parse_err = parsing(argc, argv[1], &map);
+    if (parse_err)
+    {
+        ft_printf("Error\n%s\n", parse_err);
+        return (1);
+    }
+    //render(&map);
+    return (0);
+}

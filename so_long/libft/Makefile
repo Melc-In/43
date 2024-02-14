@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/13 21:05:17 by cglandus          #+#    #+#              #
-#    Updated: 2024/02/12 20:19:12 by cglandus         ###   ########.fr        #
+#    Updated: 2024/02/13 23:23:20 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,10 @@ SRC = ft_abs.c\
 	  ft_memcpy.c\
 	  ft_memmove.c\
 	  ft_memset.c\
+	  ft_printf.c\
 	  ft_putchar_fd.c\
 	  ft_putendl_fd.c\
+	  ft_putnbr_base_fd.c\
 	  ft_putnbr_fd.c\
 	  ft_putstr_fd.c\
 	  ft_split.c\
@@ -69,15 +71,15 @@ RED = \033[1;31m
 PURPLE = \033[1;35m
 GREEN = \033[1;32m
 
+all: $(NAME)
+
 %.o: %.c
 	@echo "$(GREEN)[Compiling] -> $<"
 	@$(CC) -o $@ -c $< $(CFLAGS)
 
-all: $(NAME)
-
 $(NAME): $(OBJ)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+	@echo "$(GREEN)[Linking] -> libft.a"
+	@ar rcs $(NAME) $(OBJ)
 
 clean:
 	@echo "$(PURPLE)[Cleaning]$(RED)"

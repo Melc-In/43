@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:39:42 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/06 17:24:40 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/14 03:19:38 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	print_ints(int n)
 	int	nb;
 	int	len;
 
-	nb = absol(n);
+	nb = ft_abs(n);
 	len = 1;
 	ft_putnbr_fd(n, 1);
 	if (n < 0)
@@ -82,7 +82,7 @@ static int	parsing_printf(const char *str, va_list ap)
 	if (*str == 'x' || *str == 'X')
 		return (print_ptr_hex(0, va_arg(ap, unsigned int), *str, 0));
 	if (*str == 'p')
-		return (print_ptr_hex(va_arg(ap, unsigned long long)), 0, *str, 1);
+		return (print_ptr_hex(va_arg(ap, unsigned long long), 0, *str, 1));
 	return (-1);
 }
 

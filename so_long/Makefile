@@ -6,40 +6,63 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 14:46:26 by cglandus          #+#    #+#              #
-#    Updated: 2024/02/13 21:41:13 by cglandus         ###   ########.fr        #
+#    Updated: 2024/02/14 03:18:44 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-LIB = ./libft/libft.a
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
+
+MLX_DIR = MacroLibX
+MLX = $(MLX_DIR)/libmlx.so
 
 CC = clang
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
-SRC = so_long.c\
-	  parser.c\
+SRC_DIR = src
+BUILD_DIR = build
+
+SRC = so_long.c \
+	  parser.c \
+	  map_init.c
 
 OBJ = $(SRC:.c=.o)
+OBJ := $(addprefix $(BUILD_DIR)/, $(OBJ))
+SRC := $(addprefix $(SRC_DIR)/, $(SRC))
 
 RED = \033[1;31m
 PURPLE = \033[1;35m
 GREEN = \033[1;32m
 
-all: libft $(NAME)
+all: $(NAME)
 
-$(NAME):
-	$(CC) -o so_long so_long.c $(LIB) $(CFLAGS)
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+	@echo "$(GREEN)[Compiling] -> $<"
+	@$(CC) -o $@ -c $< $(CFLAGS)
 
-libft:
-	@make -C src/libft
+$(NAME): $(LIBFT) $(MLX) $(OBJ)
+	$(CC) -o $(NAME) $(OBJ) $(LIBFT) $(MLX) $(CFLAGS) -lSDL2
+
+$(LIBFT):
+	@make -C $(LIBFT_DIR) -j
+
+$(MLX):
+	@make -C $(MLX_DIR) -j
+
+valgrind: $(NAME)
+	@valgrind -s --leak-check=full --show-leak-kinds=all ./$(NAME)
 
 clean:
-	@make -C src/libft clean
+	@rm -rf $(OBJ)
+	@make -C $(LIBFT_DIR) clean
+	@make -C $(MLX_DIR) clean
 
-fclean:
-	@make -C src/libft fclean
+fclean: clean
+	@make -C $(LIBFT_DIR) fclean
+	@make -C $(MLX_DIR) fclean
 	@rm -rf $(NAME)
 
 re: fclean all
