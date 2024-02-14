@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 01:50:44 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/14 03:18:41 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/14 21:18:29 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,20 @@ char	*map_check(t_map *map)
 
 char    *msize_init(t_map *map, int fd)
 {
-    size_t  sx;
+    //size_t  sx;
     size_t  sy;
     char    *line;
 
+    map->n_co = 1;
     line = get_next_line(fd);
     if (!line)
-        return ;
-    sy = ft_strlen(get_next_line);
+        return "GNL FAIL";
+    sy = ft_strlen(get_next_line(fd));
+    while (line)
+    {
+        free(line);
+        line = ft_strlen()
+    }
     return ("BOOM SIZE");
 }
 
@@ -65,7 +71,7 @@ char    *map_builder(t_map *map, int fd)
         i++;
     }
     print_map(map->grid);
-    return ("BOOM BUILD")
+    return ("BOOM BUILD");
 }
 
 char    *map_init(t_map *map, char *map_info, int fd)
@@ -75,14 +81,14 @@ char    *map_init(t_map *map, char *map_info, int fd)
     err_mess = msize_init(map, fd);
     if (err_mess)
         return (err_mess);
-	close(fd);
+    close(fd);
     fd = open(map_info, O_RDWR);
-	if (fd < 0)
-		return (strerror(errno));
-	err_mess = map_builder(map, fd);
+    if (fd < 0)
+        return (strerror(errno));
+    err_mess = map_builder(map, fd);
     if (err_mess)
         return (err_mess);
-	close(fd);
-	err_mess = map_check(map);
+    close(fd);
+    err_mess = map_check(map);
     return (err_mess);  
 }

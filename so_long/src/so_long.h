@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:51:02 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/14 03:18:46 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/14 21:18:25 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_map
     int     ex;
     int     ey;
     int     n_co;
-    int     *co;
 	char    **grid;
 	size_t	size_x;
     size_t	size_y;
@@ -35,6 +34,6 @@ typedef struct s_map
 char    *parsing(int argc, char *str, t_map *map);
 char    *map_check(t_map *map);
 char    *map_init(t_map *map, char *map_info, int fd);
-void    map_builder(t_map *map, int fd);
+char    *map_builder(t_map *map, int fd);
 
 #endif

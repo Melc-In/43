@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 14:46:26 by cglandus          #+#    #+#              #
-#    Updated: 2024/02/14 03:18:44 by cglandus         ###   ########.fr        #
+#    Updated: 2024/02/14 20:42:25 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ $(MLX):
 	@make -C $(MLX_DIR) -j
 
 valgrind: $(NAME)
-	@valgrind -s --leak-check=full --show-leak-kinds=all ./$(NAME)
+	@valgrind -s --suppressions=MacroLibX/valgrind.supp --leak-check=full --show-leak-kinds=all ./$(NAME)
 
 clean:
 	@rm -rf $(OBJ)
