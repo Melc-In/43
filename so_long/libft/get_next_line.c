@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:02:10 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/14 02:01:21 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/19 01:30:42 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,10 @@ static char	*cut_stash(char *stash)
 
 	save = NULL;
 	i = 0;
-	if (*stash == '\0')
+	if (!stash || *stash == '\0')
 	{
-		free(stash);
+		if (stash)
+			free(stash);
 		return (NULL);
 	}
 	while (stash[i] != '\n' && stash[i])
@@ -66,8 +67,6 @@ static char	*cut_stash(char *stash)
 		save = NULL;
 	else if (stash[i])
 		save = ft_calloc(ft_strlen(ft_strchr(stash, '\n')), 1);
-	else
-		save = ft_calloc(1, 1);
 	save = cutter(stash, save, i);
 	return (save);
 }
@@ -98,10 +97,9 @@ static char	*get_line(char *stash, int fd)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
-	char		*line;
+	static char	*stash = NULL;
+	char	*line;
 
-	stash = NULL;
 	if (fd < 0 || fd > 1023 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!ft_strchr(stash, '\n'))

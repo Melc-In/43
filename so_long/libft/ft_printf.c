@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:39:42 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/14 03:19:38 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:32:48 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	ft_printf(const char *str, ...)
 		return (-1);
 	va_start(ap, str);
 	len = 0;
-	ft_bzero(err, 2);
+	ft_bzero(err, 2 * sizeof(int));
 	while (*str)
 	{
 		if (*str == '%')

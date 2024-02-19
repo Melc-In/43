@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   renderer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 14:39:58 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/19 01:41:14 by cglandus         ###   ########.fr       */
+/*   Created: 2024/02/19 01:35:52 by cglandus          #+#    #+#             */
+/*   Updated: 2024/02/19 01:42:12 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*parsing(int argc, char *arg, t_map *map)
+void    render_so_long(t_map *map)
 {
-	size_t	len;
-	int		fd;
-
-	if (argc < 2)
-        return ("Missing map as argument !");
-	len = ft_strlen(arg);
-	if (len < 4)
-		return ("Wrong argument format !");
-	if (ft_strncmp(arg + len - 4, ".ber", 5))
-		return ("Wrong file extension !");
-	fd = open(arg, O_RDWR);
-	if (fd < 0)
-		return (strerror(errno));
-	return (map_init(map, arg, fd));
+    
 }

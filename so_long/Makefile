@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 14:46:26 by cglandus          #+#    #+#              #
-#    Updated: 2024/02/14 20:42:25 by cglandus         ###   ########.fr        #
+#    Updated: 2024/02/19 01:41:17 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,10 @@ BUILD_DIR = build
 
 SRC = so_long.c \
 	  parser.c \
-	  map_init.c
+	  map_init.c\
+	  map_check.c\
+	  map_solv.c\
+	  renderer.c
 
 OBJ = $(SRC:.c=.o)
 OBJ := $(addprefix $(BUILD_DIR)/, $(OBJ))

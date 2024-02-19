@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:51:02 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/14 21:18:25 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/19 01:43:51 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,24 @@
 #include "errno.h"
 #include "string.h"
 
+typedef struct s_coo
+{
+    int x;
+    int y;
+}   t_coo;
+
 typedef struct s_map
 {
-    int     px;
-    int     py;
-    int     ex;
-    int     ey;
-    int     n_co;
+    t_coo     player;
 	char    **grid;
-	size_t	size_x;
-    size_t	size_y;
+	size_t	len_x;
+    size_t	len_y;
 }			t_map;
 
 char    *parsing(int argc, char *str, t_map *map);
-char    *map_check(t_map *map);
 char    *map_init(t_map *map, char *map_info, int fd);
-char    *map_builder(t_map *map, int fd);
+char	*map_check(t_map *map);
+char    *map_solv(t_map *map);
+void    render_so_long(t_map *map);
 
 #endif

@@ -6,72 +6,73 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 01:50:44 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/14 21:18:29 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/19 01:42:09 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 //tempfonction to test parsing
-static void print_map(char **map)
+static void print_map(t_map *map)
 {
-    int i;
+    size_t i;
 
     i = 0;
     ft_printf("MAP :\n\n");
     if (!map)
         return ;
-    while (i < (int)ft_strlen(map[i]))
+    while (i < map->len_y)
     {
-        ft_printf("row (%d) : %s\n", i, map[i]);
+        ft_printf("row (%d) : %s\n", (int)i, map->grid[i]);
         i++;
     }
 }
 
-char	*map_check(t_map *map)
+static char    *msize_init(t_map *map, int fd)
 {
-    map->n_co = 1;
-    return ("BOOM CHECK");
-}
-
-char    *msize_init(t_map *map, int fd)
-{
-    //size_t  sx;
-    size_t  sy;
     char    *line;
+    int     err;
 
-    map->n_co = 1;
+    err = 0;
     line = get_next_line(fd);
     if (!line)
-        return "GNL FAIL";
-    sy = ft_strlen(get_next_line(fd));
+        return ("Corruption (GNL FAIL)");
+    map->len_x = ft_strlen(line) - 1;
     while (line)
     {
+        if (map->len_x != ft_strlen(line) - 1)
+            err = 1;
+        map->len_y++;
         free(line);
-        line = ft_strlen()
+        line = get_next_line(fd);
     }
-    return ("BOOM SIZE");
+    if (err)
+        return ("Map not rectangular");
+    return (NULL);
 }
 
-char    *map_builder(t_map *map, int fd)
+static char    *map_builder(t_map *map, int fd)
 {
-    char *line;
-	//int	nb_co;
-	//int	nb_pl;
-	//int	nb_ex;
-    int i;
+    char    *line;
+    int     i;
 
     i = 0;
+    map->grid = (char **)ft_calloc(map->len_y + 1, sizeof(char *));
+    if (!map->grid)
+        return ("ALLOCATION FAIL");
     line = get_next_line(fd);
-	while (line)
+    if (!line)
+        return ("Corruption (GNL FAIL)");
+    while (line)
     {
+        if (ft_strlen(line) != 0)
+            line[ft_strlen(line) - 1] = 0;
         map->grid[i] = line;
-        free(line);
         line = get_next_line(fd);
         i++;
     }
-    print_map(map->grid);
-    return ("BOOM BUILD");
+    print_map(map);
+    return (NULL);
 }
 
 char    *map_init(t_map *map, char *map_info, int fd)
@@ -90,5 +91,8 @@ char    *map_init(t_map *map, char *map_info, int fd)
         return (err_mess);
     close(fd);
     err_mess = map_check(map);
+    if (err_mess)
+        return (err_mess);
+    err_mess = map_solv(map);
     return (err_mess);  
 }
