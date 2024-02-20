@@ -6,24 +6,23 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 01:50:44 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/19 01:42:09 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/21 00:02:13 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 //tempfonction to test parsing
-static void print_map(t_map *map)
+void print_map(t_map *map)
 {
     size_t i;
 
     i = 0;
-    ft_printf("MAP :\n\n");
     if (!map)
         return ;
     while (i < map->len_y)
     {
-        ft_printf("row (%d) : %s\n", (int)i, map->grid[i]);
+        ft_printf("%s\n", map->grid[i]);
         i++;
     }
 }
@@ -31,32 +30,28 @@ static void print_map(t_map *map)
 static char    *msize_init(t_map *map, int fd)
 {
     char    *line;
-    int     err;
 
-    err = 0;
     line = get_next_line(fd);
     if (!line)
         return ("Corruption (GNL FAIL)");
     map->len_x = ft_strlen(line) - 1;
     while (line)
     {
-        if (map->len_x != ft_strlen(line) - 1)
-            err = 1;
         map->len_y++;
         free(line);
         line = get_next_line(fd);
     }
-    if (err)
-        return ("Map not rectangular");
     return (NULL);
 }
 
 static char    *map_builder(t_map *map, int fd)
 {
     char    *line;
-    int     i;
+    size_t  i;
+    int     err;
 
     i = 0;
+    err = 0;
     map->grid = (char **)ft_calloc(map->len_y + 1, sizeof(char *));
     if (!map->grid)
         return ("ALLOCATION FAIL");
@@ -65,13 +60,27 @@ static char    *map_builder(t_map *map, int fd)
         return ("Corruption (GNL FAIL)");
     while (line)
     {
-        if (ft_strlen(line) != 0)
-            line[ft_strlen(line) - 1] = 0;
-        map->grid[i] = line;
-        line = get_next_line(fd);
+        if (i != map->len_y - 1)
+        {
+            if (map->len_x != ft_strlen(line) - 1)
+                err = 1;
+            if (ft_strlen(line) != 0)
+                line[ft_strlen(line) - 1] = '\0';
+            map->grid[i] = line;
+            line = get_next_line(fd);
+        }
+        else
+        {
+            if (map->len_x != ft_strlen(line) && line[map->len_x] != '\0' 
+                && line[map->len_x] != '\n')
+                err = 1;
+            map->grid[i] = line;
+            line = get_next_line(fd);
+        }
         i++;
     }
-    print_map(map);
+    if (err)
+        return ("Map not rectangular");
     return (NULL);
 }
 

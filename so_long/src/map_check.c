@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:47:14 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/19 01:42:08 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/20 23:00:59 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ static char *check_walls(t_map *map)
         return ("Invalid map (single line)");
     while (i < map->len_y - 1)
     {
-        if (map->grid[i][0] != '1' || map->grid[i][map->len_x - 1] != '1')
-            return ("Missing wall on sides");
+        if (map->grid[i][0] != '1')
+            return ("Missing wall on left side");
+        else if (map->grid[i][map->len_x - 1] != '1')
+            return ("Missing wall on right side");
         i++;
     }
     return (NULL);
@@ -48,11 +50,14 @@ static char *player_check(t_map *map)
     while (i < map->len_y)
     {
         j = 0;
-        while (j < map->len_x)
+        while (j++ < map->len_x)
         {
             if (map->grid[i][j] == 'P')
+            {
+                map->player.x = j;
+                map->player.y = i;
                 nb_el++;
-            j++;
+            }
         }
         i++;
     }
@@ -78,6 +83,9 @@ static char *exit_check(t_map *map)
         {
             if (map->grid[i][j] == 'E')
                 nb_el++;
+            if (map->grid[i][j] != '1' && map->grid[i][j] != '0' &&
+                map->grid[i][j] != 'C' && map->grid[i][j] != 'E' && map->grid[i][j] != 'P')
+                return ("Found unexpected elements in map");
             j++;
         }
         i++;
@@ -108,6 +116,7 @@ static char *collectibles_check(t_map *map)
         }
         i++;
     }
+    map->coll = nb_el;
     if (nb_el >= 1)
         return (NULL);
     return ("Missing collectible(s)");
