@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:51:02 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/20 23:55:37 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:56:07 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,12 @@ typedef struct s_map
 	char    **grid;
 	size_t	len_x;
     size_t	len_y;
-}			t_map;
+}   t_map;
+
+typedef struct s_mlx
+{
+    int i;
+}   t_mlx;   
 
 char    *parsing(int argc, char *str, t_map *map);
 void    render_so_long(t_map *map);
