@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:51:02 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/21 23:56:07 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:36:39 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,37 @@ typedef struct s_coo
 
 typedef struct s_map
 {
-    t_coo     player;
     int     coll;
 	char    **grid;
 	size_t	len_x;
     size_t	len_y;
+    t_coo     player;
 }   t_map;
 
 typedef struct s_mlx
 {
-    int i;
+    void    *m;
+    void    *w;
+    void    *bg;
+    void    *wa;
+    void    *e;
+    void    *c;
+    void    *p;
+    t_coo   res;
 }   t_mlx;   
 
 char    *parsing(int argc, char *str, t_map *map);
-void    render_so_long(t_map *map);
+void    render_so_long(t_mlx *m, t_map *map);
 
 char    *map_init(t_map *map, char *map_info, int fd);
 char	*map_check(t_map *map);
 char    *map_solv(t_map *map);
 
-void    init_values(t_map *map);
+void    init_map(t_map *map);
 void    free_map(char **map);
+void    init_display(t_mlx  *m, t_map *map);
+void    destroy_all(t_mlx *m, t_map *map);
 
-void    print_map(t_map *map); //test
+int get_key(int key, void* mlx);
 
 #endif

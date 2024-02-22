@@ -6,26 +6,11 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 01:50:44 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/21 00:02:13 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:28:38 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-//tempfonction to test parsing
-void print_map(t_map *map)
-{
-    size_t i;
-
-    i = 0;
-    if (!map)
-        return ;
-    while (i < map->len_y)
-    {
-        ft_printf("%s\n", map->grid[i]);
-        i++;
-    }
-}
 
 static char    *msize_init(t_map *map, int fd)
 {

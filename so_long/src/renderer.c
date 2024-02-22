@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 01:35:52 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/21 23:56:06 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:36:38 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,46 +19,53 @@ static int cross(int event, void* param)
     return (0);
 }
 
-static int get_key(int key, void* mlx)
+static void    put_walls(t_mlx *m, t_map *map, size_t i, size_t j)
 {
-    ft_printf("KEY : %d\n", key);
-    if(key == 41)
-        mlx_loop_end(mlx);
-    if (key == 79)
-        //droite
-    if (key == 80)
-        //gauche
-    if (key == 81)
-        //bas
-    if (key == 82)
-        //haut
-    if (key == 4)
-        //gauche A
-    if (key == 7)
-        //droite D
-    if (key == 22)
-        //bas S
-    if (key == 26)
-        //haut W
-    if(key == 41)
-        mlx_loop_end(mlx);
-    return (0);
+    while (map->grid[i])
+    {
+        j = 0;
+        while (map->grid[i][j])
+        {
+            if (map->grid[i][j] == '1')
+                mlx_put_image_to_window(m->m, m->w, m->wa, j * m->res.x, i * m->res.y);
+            else if (map->grid[i][j] == 'E')
+                mlx_put_image_to_window(m->m, m->w, m->e, j * m->res.x, i * m->res.y);
+            else if (map->grid[i][j] == 'C')
+                mlx_put_image_to_window(m->m, m->w, m->c, j * m->res.x, i * m->res.y);
+            else if (map->grid[i][j] == 'P')
+                mlx_put_image_to_window(m->m, m->w, m->p, j * m->res.x, i * m->res.y);
+            j++;
+        }
+        i++;
+    }
 }
 
-void    render_so_long(t_map *map)
+static void    put_first_frame(t_mlx *m, t_map *map)
 {
-    map->len_x = 1; //silence warning
-    void* mlx = mlx_init();
-    void* win = mlx_new_window(mlx, 400, 400, "Hello world!");
-    void    *img;
+    size_t  i;
+    size_t  j;
 
-    img = mlx_new_image(mlx, 100, 100);
-    mlx_set_image_pixel(mlx, img, 42, 10, 0xFFEB5C24);
-    mlx_on_event(mlx, win, MLX_KEYDOWN, get_key, mlx);
-    mlx_on_event(mlx, win, MLX_WINDOW_EVENT, cross, mlx);
-    mlx_loop(mlx);
+    i = 0;
+    j = 0;
+    while (map->grid[i])
+    {
+        j = 0;
+        while (map->grid[i][j])
+        {
+            mlx_put_image_to_window(m->m, m->w, m->bg, j * m->res.x, i * m->res.y);
+            j++;
+        }
+        i++;
+    }
+    put_walls(m, map, 0, 0);
+}
 
-    mlx_destroy_image(mlx, img);
-    mlx_destroy_window(mlx, win);
-    mlx_destroy_display(mlx);
+void    render_so_long(t_mlx *m, t_map *map)
+{
+    map->len_x = 1;
+    mlx_on_event(m->m, m->w, MLX_KEYDOWN, get_key, m->m);
+    mlx_on_event(m->m, m->w, MLX_WINDOW_EVENT, cross, m->m);
+    put_first_frame(m, map);
+    mlx_put_image_to_window(m->m, m->bg, m->wa, 0, 0);
+    mlx_loop(m->m);
 }

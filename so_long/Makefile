@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 14:46:26 by cglandus          #+#    #+#              #
-#    Updated: 2024/02/20 18:34:49 by cglandus         ###   ########.fr        #
+#    Updated: 2024/02/22 22:36:40 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC = so_long.c \
 	  map_check.c\
 	  map_solv.c\
 	  renderer.c\
+	  mov.c\
 	  utils.c
 
 OBJ = $(SRC:.c=.o)

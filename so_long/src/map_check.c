@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:47:14 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/20 23:00:59 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:03:32 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,5 @@ char	*map_check(t_map *map)
     if (err_mess)
         return (err_mess);
     err_mess = check_walls(map);
-    if (err_mess)
-        return (err_mess);
-    return (NULL);
+    return (err_mess);
 }
