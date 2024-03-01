@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:51:02 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/29 01:14:53 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/03/01 01:32:38 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_coo
 typedef struct s_map
 {
     char    **grid;
-    t_coo   *player;
+    t_coo   player;
 	size_t	len_x;
     size_t	len_y;
     int     coll;
@@ -36,7 +36,7 @@ typedef struct s_map
 
 typedef struct s_mlx
 {
-    t_map   *map;
+    t_map   map;
     t_coo   res;
     void    *m;
     void    *w;
@@ -57,8 +57,9 @@ char    *map_solv(t_map *map);
 void    init_map(t_map *map);
 void    free_map(char **map);
 void    init_display(t_mlx  *m);
+int     coll_in_map(t_map map);
 void    destroy_all(t_mlx *m);
 
-int     get_key(int key, t_mlx *m);
+int     get_key(int key, void *data);
 
 #endif

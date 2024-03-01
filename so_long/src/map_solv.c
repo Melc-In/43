@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 01:40:01 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/29 01:14:56 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/03/01 02:24:23 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static void path_flood(char **map, int x, int y, int *coll_found, char c)
 {
-    if (map[x][y] == '1' || x == -1 || y == -1)
+    if (map[y][x] == '1' || x == -1 || y == -1)
         return ;
-    if (map[x][y] == c)
+    if (map[y][x] == c)
         (*coll_found)++;
-    map[x][y] = '1';
+    map[y][x] = '1';
     path_flood(map, x + 1, y, coll_found, c);
     path_flood(map, x - 1, y, coll_found, c);
     path_flood(map, x, y + 1, coll_found, c);
