@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:47:14 by cglandus          #+#    #+#             */
-/*   Updated: 2024/03/01 02:47:28 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/03/02 23:36:49 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@ static char *check_walls(t_map *map)
     while (map->grid[0][i])
     {
         if (map->grid[0][i] != '1')
-            return ("Missing a wall topside of the map");
+            return ("Missing a wall(s) topside of the map");
         else if (map->grid[map->len_y - 1][i] != '1')
-            return ("Missing a wall botside of the map");
+            return ("Missing a wall(s) botside of the map");
         i++;
     }
     i = 1;
     if (map->len_y <= 0)
         return ("Invalid map (single line)");
-    while (map->grid[i - 1][0])
+    while (map->grid[i])
     {
         if (map->grid[i][0] != '1')
-            return ("Missing wall on left side");
+            return ("Missing wall(s) on left side");
         else if (map->grid[i][map->len_x - 1] != '1')
-            return ("Missing wall on right side");
+            return ("Missing wall(s) on right side");
         i++;
     }
     return (NULL);

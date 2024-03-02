@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 03:28:45 by cglandus          #+#    #+#             */
-/*   Updated: 2024/03/01 00:26:04 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/03/02 23:36:46 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int main(int argc, char **argv)
     else
     {
         init_display(&m);
+        init_exit(&m);
         render_so_long(&m);
         destroy_all(&m);
     }

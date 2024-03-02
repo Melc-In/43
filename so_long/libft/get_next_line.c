@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:02:10 by cglandus          #+#    #+#             */
-/*   Updated: 2024/02/19 01:30:42 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/03/02 23:36:52 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static char	*get_line(char *stash, int fd)
 char	*get_next_line(int fd)
 {
 	static char	*stash = NULL;
-	char	*line;
+	char		*line;
 
 	if (fd < 0 || fd > 1023 || BUFFER_SIZE <= 0)
 		return (NULL);
