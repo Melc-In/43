@@ -6,18 +6,18 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:51:02 by cglandus          #+#    #+#             */
-/*   Updated: 2024/03/02 23:24:32 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/03/03 21:51:37 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include "../MacroLibX/includes/mlx.h"
-#include "../libft/libft.h"
-#include "fcntl.h"
-#include "errno.h"
-#include "string.h"
+# include "../MacroLibX/includes/mlx.h"
+# include "../libft/libft.h"
+# include "fcntl.h"
+# include "errno.h"
+# include "string.h"
 
 typedef struct s_coo
 {
@@ -58,7 +58,7 @@ char	*map_solv(t_map *map);
 
 void	init_map(t_map *map);
 void	free_map(char **map);
-void	init_display(t_mlx  *m);
+void	init_display(t_mlx *m);
 void	init_exit(t_mlx *m);
 int		find_ellement(t_map map, char el);
 void	destroy_all(t_mlx *m);

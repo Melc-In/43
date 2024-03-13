@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 01:50:44 by cglandus          #+#    #+#             */
-/*   Updated: 2024/03/02 23:36:48 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/03/03 23:34:23 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,11 @@ static char	*msize_init(t_map *map, int fd)
 	return (NULL);
 }
 
-static char	*map_builder(t_map *map, int fd)
+static int	create_map(t_map *map, int fd, char *line, int err)
 {
-	char	*line;
 	size_t	i;
-	int		err;
 
 	i = 0;
-	err = 0;
-	map->grid = (char **)ft_calloc(map->len_y + 1, sizeof(char *));
-	if (!map->grid)
-		return ("ALLOCATION FAIL");
-	line = get_next_line(fd);
-	if (!line)
-		return ("Corruption (GNL FAIL)");
 	while (line)
 	{
 		if (i != map->len_y - 1)
@@ -79,14 +70,30 @@ static char	*map_builder(t_map *map, int fd)
 		}
 		else
 		{
-			if (ft_strlen(line) < map->len_x || (ft_strlen(line) != map->len_x && line[map->len_x] != '\n'
-					&& line[map->len_x] != '\0'))
+			if (ft_strlen(line) < map->len_x || (ft_strlen(line) != map->len_x
+					&& line[map->len_x] != '\n' && line[map->len_x] != '\0'))
 				err = 1;
 			map->grid[i] = line;
 			line = get_next_line(fd);
 		}
 		i++;
 	}
+	return (err);
+}
+
+static char	*map_builder(t_map *map, int fd)
+{
+	char	*line;
+	int		err;
+
+	err = 0;
+	map->grid = (char **)ft_calloc(map->len_y + 1, sizeof(char *));
+	if (!map->grid)
+		return ("ALLOCATION FAIL");
+	line = get_next_line(fd);
+	if (!line)
+		return ("Corruption (GNL FAIL)");
+	err = create_map(map, fd, line, err);
 	if (err)
 		return ("Map not rectangular");
 	return (NULL);
@@ -111,5 +118,5 @@ char	*map_init(t_map *map, char *map_info, int fd)
 	if (err_mess)
 		return (err_mess);
 	err_mess = map_solv(map);
-	return (err_mess);  
+	return (err_mess);
 }

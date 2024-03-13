@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 01:35:52 by cglandus          #+#    #+#             */
-/*   Updated: 2024/03/02 23:35:44 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/03/04 20:56:46 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,17 @@ static void	put_first_frame(t_mlx *m)
 	put_walls(m, 0, 0);
 }
 
+static int	cross(int key, void	*window)
+{
+	if (key == 0)
+		mlx_loop_end(window);
+	return (0);
+}
+
 void	render_so_long(t_mlx *m)
 {
 	mlx_on_event(m->m, m->w, MLX_KEYDOWN, get_key, m);
-	mlx_on_event(m->m, m->w, MLX_WINDOW_EVENT, get_key, m);
+	mlx_on_event(m->m, m->w, MLX_WINDOW_EVENT, cross, m->m);
 	put_first_frame(m);
 	mlx_loop(m->m);
 }

@@ -20,7 +20,7 @@ MLX = $(MLX_DIR)/libmlx.so
 
 CC = clang
 
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra
 
 SRC_DIR = src
 BUILD_DIR = build
