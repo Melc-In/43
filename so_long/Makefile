@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 14:46:26 by cglandus          #+#    #+#              #
-#    Updated: 2024/03/01 00:11:51 by cglandus         ###   ########.fr        #
+#    Updated: 2024/03/16 04:15:47 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) -o $@ -c $< $(CFLAGS)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJ)
-	$(CC) -o $(NAME) $(OBJ) $(LIBFT) $(MLX) $(CFLAGS) -lSDL2
+	$(CC) -o $(NAME) $(OBJ) $(LIBFT) $(MLX) -lSDL2
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR) -j
