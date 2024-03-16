@@ -1,10 +1,6 @@
 [submodule "so_long/MacroLibX"]
 	path = so_long/MacroLibX
 	url = https://github.com/seekrs/MacroLibX
-
-[submodule "./minishell"]
-	path = ./minishell
-	url = https://github.com/27network/minishell
 [submodule "minishell"]
 	path = minishell
-	url = git@github.com:27network/minishell.git
+	url = https://github.com/27network/minishell.git
