@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 22:59:01 by cglandus          #+#    #+#              #
-#    Updated: 2024/04/01 03:37:32 by cglandus         ###   ########.fr        #
+#    Updated: 2024/04/01 09:11:52 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo
 
 CC = clang
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 SRC_DIR = src
 BUILD_DIR = build

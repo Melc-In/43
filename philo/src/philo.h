@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 00:44:35 by cglandus          #+#    #+#             */
-/*   Updated: 2024/04/01 08:25:53 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/04/01 09:00:59 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,16 @@
 # include <unistd.h>
 # include <string.h>
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	int	n_phi;
 	int	ttd;
 	int	tte;
 	int	tts;
 	int	n_eat;
-}	t_philo
+}	t_philo;
+
+long	ft_atol(const char *str);
+int		ft_str_isdigit(char *str);
 
 #endif
