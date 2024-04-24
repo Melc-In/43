@@ -6,13 +6,13 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 00:44:38 by cglandus          #+#    #+#             */
-/*   Updated: 2024/04/01 09:17:25 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/04/24 22:55:19 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	philo_init(t_philo *philo, char **argv)
+static int	param_init(t_philo *philo, char **argv)
 {
 	int	i;
 
@@ -30,12 +30,41 @@ int	philo_init(t_philo *philo, char **argv)
 		philo->ttd = ft_atol(argv[2]);
 		philo->tte = ft_atol(argv[3]);
 		philo->tts = ft_atol(argv[4]);
-		philo->n_eat = -1;
+		philo->n_toeat = 0;
+		philo->must_eat = 0;
 		if (i == 6)
-			philo->n_eat = ft_atol(argv[5]);
+		{
+			philo->must_eat = 1;
+			philo->n_toeat = ft_atol(argv[5]);
+		}
 		return (1);
 	}
 	return (0);
+}
+
+static int	philo_init(t_philo *philo)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv);
+	philo->start_time = tv.usec * 1000;
+	if (pthread_mutex_init(philo->man->forks_mtx, NULL) != 0)
+		return (0);
+	if (pthread_mutex_init(philo->man->status_mtx, NULL) != 0)
+		return (0);
+	if (pthread_mutex_init(philo->man->print_mtx, NULL) != 0)
+		return (0);
+	philo->t = ft_calloc(philo->forks, sizeof(pthread_t));
+	if (!philo->t)
+		return (0);
+	philo->man = ft_calloc(philo->forks, sizeof(t_greec));
+	if (!philo->man)
+	{
+		if (philo->t)
+			free(philo->t);
+		return (0);
+	}
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -44,13 +73,12 @@ int	main(int argc, char **argv)
 
 	if (argc > 1)
 	{
-		if (!philo_init(&philo, argv))
-			return (0);
-		printf("NB PHILOSOPHES : %d\n", philo.n_phi);
-		printf("TIME TO DIE : %d\n", philo.ttd);
-		printf("TIME TO EAT : %d\n", philo.tte);
-		printf("TIME TO SLEEP : %d\n", philo.tts);
-		printf("NB EACH PHILO MUST EAT : %d\n", philo.n_eat);
+		if (!param_init(&philo, argv))
+			return (-1);
+		if (!philo_init(&philo))
+			return (-1);
+		start_simm(&philo);
+		destroy_simm(&philo);
 	}
 	return (0);
 }
