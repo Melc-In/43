@@ -6,29 +6,35 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 00:44:40 by cglandus          #+#    #+#             */
-/*   Updated: 2024/04/24 23:06:38 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/04/25 05:30:27 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	get_time(t_philo *philo)
+int	get_time(void)
 {
-	struct timeval	tv;
-	int	curr_time;
+	struct timeval	timestamp;
+	int				curr_time;
 
-	gettimeofday(&tv, NULL) 
-	curr_time = philo->start_time - (tv.useci * 1000);
+	if (gettimeofday(&timestamp, NULL))
+		return (-1);
+	curr_time = (timestamp.tv_sec * 1000) + (timestamp.tv_usec / 1000);
 	return (curr_time);
 }
 
-void	destroy_m(t_philo *philo)
+void	destroy_simm(t_philo *philo)
 {
-	if (philo->t)
-		free(philo->t);
+	int	i;
+
+	i = 0;
+	while (i < philo->forks)
+	{
+		pthread_mutex_destroy(&philo->forks_mtx[i]);
+		pthread_mutex_destroy(&philo->man[i].status_mtx);
+		i++;
+	}
 	if (philo->man)
 		free(philo->man);
-	pthread_mutex_destroy(philo->man->forks_mtx);
-	pthread_mutex_destroy(philo->man->status_mtx);
-	pthread_mutex_destroy(philo->man->print_mtx);
+	pthread_mutex_destroy(&philo->print_mtx);
 }

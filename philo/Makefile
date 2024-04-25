@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 22:59:01 by cglandus          #+#    #+#              #
-#    Updated: 2024/04/01 09:11:52 by cglandus         ###   ########.fr        #
+#    Updated: 2024/04/25 05:30:28 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ SRC_DIR = src
 BUILD_DIR = build
 
 SRC = philo.c\
-	  philo_utils.c
+	  philo_utils.c\
+	  parse.c\
+	  simmulation.c
 
 OBJ = $(SRC:.c=.o)
 OBJ := $(addprefix $(BUILD_DIR)/, $(OBJ))
@@ -40,10 +42,10 @@ $(NAME): $(OBJ)
 	$(CC) -o $(NAME) $(OBJ)
 
 clean:
-	@rm -rf $(OBJ)
+	rm -rf $(OBJ)
 
 fclean: clean
-	@rm -rf $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 00:44:38 by cglandus          #+#    #+#             */
-/*   Updated: 2024/04/24 22:55:19 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/04/25 05:30:26 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,10 @@ static int	param_init(t_philo *philo, char **argv)
 	}
 	if (i == 5 || i == 6)
 	{
-		philo->n_phi = ft_atol(argv[1]);
+		philo->forks = ft_atol(argv[1]);
 		philo->ttd = ft_atol(argv[2]);
 		philo->tte = ft_atol(argv[3]);
 		philo->tts = ft_atol(argv[4]);
-		philo->n_toeat = 0;
-		philo->must_eat = 0;
 		if (i == 6)
 		{
 			philo->must_eat = 1;
@@ -44,26 +42,28 @@ static int	param_init(t_philo *philo, char **argv)
 
 static int	philo_init(t_philo *philo)
 {
-	struct timeval	tv;
+	int	i;
 
-	gettimeofday(&tv);
-	philo->start_time = tv.usec * 1000;
-	if (pthread_mutex_init(philo->man->forks_mtx, NULL) != 0)
-		return (0);
-	if (pthread_mutex_init(philo->man->status_mtx, NULL) != 0)
-		return (0);
-	if (pthread_mutex_init(philo->man->print_mtx, NULL) != 0)
-		return (0);
-	philo->t = ft_calloc(philo->forks, sizeof(pthread_t));
-	if (!philo->t)
+	i = 0;
+	philo->forks_mtx = ft_calloc(philo->forks, sizeof(pthread_mutex_t));
+	if (!philo->forks_mtx)
 		return (0);
 	philo->man = ft_calloc(philo->forks, sizeof(t_greec));
 	if (!philo->man)
 	{
-		if (philo->t)
-			free(philo->t);
+		if (philo->forks)
+			free(philo->forks_mtx);
 		return (0);
 	}
+	while (i < philo->forks)
+	{
+		if (pthread_mutex_init(&philo->forks_mtx[i], NULL) != 0
+			|| pthread_mutex_init(&philo->man[i].status_mtx, NULL) != 0)
+			return (0);
+		i++;
+	}
+	if (pthread_mutex_init(&philo->print_mtx, NULL) != 0)
+		return (0);
 	return (1);
 }
 
@@ -73,6 +73,8 @@ int	main(int argc, char **argv)
 
 	if (argc > 1)
 	{
+		philo.n_toeat = 0;
+		philo.must_eat = 0;
 		if (!param_init(&philo, argv))
 			return (-1);
 		if (!philo_init(&philo))
