@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 00:44:38 by cglandus          #+#    #+#             */
-/*   Updated: 2024/04/27 06:50:48 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/04/27 08:17:40 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	philo_init(t_philo *philo)
 	i = 0;
 	philo->dead = 0;
 	philo->full = 0;
-	philo->forks_mtx = ft_calloc(philo->forks, sizeof(pthread_mutex_t));
+	philo->forks_mtx = (pthread_mutex_t *)ft_calloc(philo->forks, sizeof(pthread_mutex_t));
 	if (!philo->forks_mtx)
 		return (0);
 	philo->man = ft_calloc(philo->forks, sizeof(t_greec));
@@ -82,7 +82,8 @@ static int	philo_init(t_philo *philo)
 	}
 	if (pthread_mutex_init(&philo->print_mtx, NULL) != 0
 		|| pthread_mutex_init(&philo->dead_mtx, NULL) != 0
-		|| pthread_mutex_init(&philo->eat_mtx, NULL) != 0)
+		|| pthread_mutex_init(&philo->eat_mtx, NULL) != 0
+		|| pthread_mutex_init(&philo->full_mtx, NULL) != 0)
 		return (0);
 	return (1);
 }

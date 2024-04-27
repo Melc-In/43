@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:41:23 by cglandus          #+#    #+#             */
-/*   Updated: 2024/04/27 06:54:49 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/04/27 08:50:55 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ void	init_man(t_philo *philo)
 		return ;
 	while (i < philo->forks)
 	{
-		philo->man[i].forks_mtx = philo->forks_mtx;
+		philo->man[i].rfork_mtx = &philo->forks_mtx[i];
+		philo->man[i].lfork_mtx = &philo->forks_mtx[(i + 1) % philo->forks];
 		philo->man[i].first_time = &philo->first_time;
 		philo->man[i].print_mtx = &philo->print_mtx;
 		philo->man[i].dead_mtx = &philo->dead_mtx;
 		philo->man[i].eat_mtx = &philo->eat_mtx;
+		philo->man[i].full_mtx = &philo->full_mtx;
 		philo->man[i].dead = &philo->dead;
 		philo->man[i].nb_philo = philo->forks;
 		philo->man[i].ttd = philo->ttd;
@@ -57,7 +59,7 @@ int	is_dead(t_philo *philo)
 			while (i < philo->forks)
 			{
 				pthread_mutex_lock(&philo->dead_mtx);
-				if (time - philo->man[i].last_meal >= philo->ttd)
+				if (philo->man[i].last_meal != -1 && (time - philo->man[i].last_meal >= philo->ttd))
 				{
 					philo->dead = 1;
 					pthread_mutex_unlock(&philo->dead_mtx);
@@ -67,10 +69,17 @@ int	is_dead(t_philo *philo)
 				}
 				pthread_mutex_unlock(&philo->dead_mtx);
 				i++;
+				pthread_mutex_lock(&philo->full_mtx);
+				if ((philo->full == philo->forks) && philo->must_eat)
+				{
+					pthread_mutex_unlock(&philo->full_mtx);
+					return (1);
+				}
+				pthread_mutex_unlock(&philo->full_mtx);
 			}
 			i = 0;
 			pthread_mutex_lock(&philo->dead_mtx);
-			if ((philo->full == philo->n_toeat) && philo->must_eat)
+			if ((philo->full == philo->forks) && philo->must_eat)
 			{
 				pthread_mutex_unlock(&philo->dead_mtx);
 				return (1);
@@ -104,12 +113,12 @@ void	chores(t_greec *man, int action)
 {
 	if (action == 1)
 	{
-		pthread_mutex_lock(&man->forks_mtx[(man->who + 1) % man->nb_philo]);
-		pthread_mutex_lock(&man->forks_mtx[man->who]);
+		pthread_mutex_lock(man->lfork_mtx);
+		pthread_mutex_lock(man->rfork_mtx);
 		if (get_val(*man->dead, man->dead_mtx) == 1)
 		{
-			pthread_mutex_unlock(&man->forks_mtx[man->who]);
-			pthread_mutex_unlock(&man->forks_mtx[(man->who + 1) % man->nb_philo]);
+			pthread_mutex_unlock(man->lfork_mtx);
+			pthread_mutex_unlock(man->rfork_mtx);
 			return ;
 		}
 		p_print(man, "has taken a fork");
@@ -119,8 +128,8 @@ void	chores(t_greec *man, int action)
 		pthread_mutex_unlock(man->eat_mtx);
 		p_print(man, "is eating");
 		eat_sleep(man);
-		pthread_mutex_unlock(&man->forks_mtx[man->who]);
-		pthread_mutex_unlock(&man->forks_mtx[(man->who + 1) % man->nb_philo]);
+		pthread_mutex_unlock(man->lfork_mtx);
+		pthread_mutex_unlock(man->rfork_mtx);
 	}
 	else if (action == 2)
 	{
@@ -136,8 +145,10 @@ void	chores(t_greec *man, int action)
 static void	*routine(void *param)
 {
 	t_greec	*man;
+	int		i;
 
 	man = param;
+	i = 0;
 	if ((man->who + 1) % 2 == 1)
 		usleep(1000);
 	while (1)
@@ -151,13 +162,17 @@ static void	*routine(void *param)
 		chores(man, 3);
 		if (get_val(*man->dead, man->dead_mtx) == 1)
 			return (NULL);
-		pthread_mutex_lock(man->dead_mtx);
-		if ((*man->full == man->n_toeat) && man->must_eat)
+		if ((i == man->n_toeat - 1) && man->must_eat)
 		{
-			pthread_mutex_unlock(man->dead_mtx);
+			pthread_mutex_lock(man->eat_mtx);
+			man->last_meal = -1;
+			pthread_mutex_unlock(man->eat_mtx);
+			pthread_mutex_lock(man->full_mtx);
+			*man->full += 1;
+			pthread_mutex_unlock(man->full_mtx);
 			return (NULL);
 		}
-		pthread_mutex_unlock(man->dead_mtx);
+		i++;
 	}
 	return (NULL);
 }

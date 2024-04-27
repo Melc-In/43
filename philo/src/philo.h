@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 00:44:35 by cglandus          #+#    #+#             */
-/*   Updated: 2024/04/27 06:54:03 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/04/27 08:03:41 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ typedef struct s_greec
 	pthread_t		thread;
 	pthread_mutex_t	*dead_mtx;
 	pthread_mutex_t	*print_mtx;
-	pthread_mutex_t	*forks_mtx;
+	pthread_mutex_t	*lfork_mtx;
+	pthread_mutex_t	*rfork_mtx;
 	pthread_mutex_t	*eat_mtx;
+	pthread_mutex_t	*full_mtx;
 	int				*first_time;
 	int				*dead;
 	int				nb_philo;
@@ -50,6 +52,7 @@ typedef struct s_philo
 	pthread_mutex_t	print_mtx;
 	pthread_mutex_t	dead_mtx;
 	pthread_mutex_t	eat_mtx;
+	pthread_mutex_t	full_mtx;
 	int				full;
 	int				dead;
 	int				first_time;

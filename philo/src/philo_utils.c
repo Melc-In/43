@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 00:44:40 by cglandus          #+#    #+#             */
-/*   Updated: 2024/04/27 06:47:34 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/04/27 07:56:08 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	destroy_simm(t_philo *philo)
 	pthread_mutex_destroy(&philo->print_mtx);
 	pthread_mutex_destroy(&philo->dead_mtx);
 	pthread_mutex_destroy(&philo->eat_mtx);
+	pthread_mutex_destroy(&philo->full_mtx);
 	while (i < philo->forks)
 	{
 		pthread_mutex_destroy(&philo->forks_mtx[i]);
