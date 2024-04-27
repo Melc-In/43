@@ -6,11 +6,29 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 00:44:38 by cglandus          #+#    #+#             */
-/*   Updated: 2024/04/25 05:30:26 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/04/27 06:50:48 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t	i;
+
+	i = 0;
+	while (s1[i] != '\0' || s2[i] != '\0')
+	{
+		if (!(s1[i] == s2[i]))
+		{
+			if (s1[i] < 0)
+				return (s2[i] - s1[i]);
+			return (s1[i] - s2[i]);
+		}
+		i++;
+	}
+	return (0);
+}
 
 static int	param_init(t_philo *philo, char **argv)
 {
@@ -20,7 +38,7 @@ static int	param_init(t_philo *philo, char **argv)
 	while (argv[i])
 	{
 		if (!ft_str_isdigit(argv[i]) || ft_atol(argv[i]) == 2147483648
-			|| ft_atol(argv[i]) < 0)
+			|| ft_atol(argv[i]) <= 0)
 			return (0);
 		i++;
 	}
@@ -45,6 +63,8 @@ static int	philo_init(t_philo *philo)
 	int	i;
 
 	i = 0;
+	philo->dead = 0;
+	philo->full = 0;
 	philo->forks_mtx = ft_calloc(philo->forks, sizeof(pthread_mutex_t));
 	if (!philo->forks_mtx)
 		return (0);
@@ -57,12 +77,12 @@ static int	philo_init(t_philo *philo)
 	}
 	while (i < philo->forks)
 	{
-		if (pthread_mutex_init(&philo->forks_mtx[i], NULL) != 0
-			|| pthread_mutex_init(&philo->man[i].status_mtx, NULL) != 0)
-			return (0);
+		pthread_mutex_init(&philo->forks_mtx[i], NULL);
 		i++;
 	}
-	if (pthread_mutex_init(&philo->print_mtx, NULL) != 0)
+	if (pthread_mutex_init(&philo->print_mtx, NULL) != 0
+		|| pthread_mutex_init(&philo->dead_mtx, NULL) != 0
+		|| pthread_mutex_init(&philo->eat_mtx, NULL) != 0)
 		return (0);
 	return (1);
 }
@@ -73,7 +93,7 @@ int	main(int argc, char **argv)
 
 	if (argc > 1)
 	{
-		philo.n_toeat = 0;
+		philo.n_toeat = -1;
 		philo.must_eat = 0;
 		if (!param_init(&philo, argv))
 			return (-1);
