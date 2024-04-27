@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 00:44:38 by cglandus          #+#    #+#             */
-/*   Updated: 2024/04/27 14:45:08 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/04/27 21:16:07 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ static int	param_init(t_param *param, char **argv)
 
 static int	param_init_2(t_param *param)
 {
+	param->must_eat = 0;
+	param->n_toeat = -1;
 	param->full = 0;
 	param->dead = 0;
 	param->first_time = get_time();
@@ -78,8 +80,6 @@ static int	philo_init(t_philo *philo, t_param *param)
 	int	i;
 
 	i = 0;
-	if (!param_init_2(param))
-		return (0);
 	while (i < param->forks)
 	{
 		philo[i].param = param;
@@ -109,9 +109,7 @@ int	main(int argc, char **argv)
 		param = (t_param *)ft_calloc(1, sizeof(t_param));
 		if (!param)
 			return (-1);
-		param->n_toeat = -1;
-		param->must_eat = 0;
-		if (!param_init(param, argv))
+		if (!param_init_2(param) || !param_init(param, argv))
 		{
 			free(param);
 			return (-1);

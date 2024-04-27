@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 00:44:35 by cglandus          #+#    #+#             */
-/*   Updated: 2024/04/27 18:29:33 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/04/27 21:25:17 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,15 @@ long	ft_atol(const char *str);
 int		ft_str_isdigit(char *str);
 int		ft_strcmp(const char *s1, const char *s2);
 
+void	one_philo(t_philo *philo);
+void	eat_sleep(t_philo *philo);
+void	sleesleep(t_philo *philo);
+int		eating(t_philo *philo);
+void	*are_full(t_philo *philo);
+int		is_dead(t_philo *philo, t_param *param);
+
 int		get_time(void);
-int		get_val(int value, pthread_mutex_t *m);
+int		get_val(int	*value, pthread_mutex_t *m);
 void	p_print(t_philo *philo, char *mess);
 void	destroy_simm(t_philo *philo, t_param *param);
 

@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 22:59:01 by cglandus          #+#    #+#              #
-#    Updated: 2024/04/27 17:01:35 by cglandus         ###   ########.fr        #
+#    Updated: 2024/04/27 21:26:10 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo
 
 CC = clang
 
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra
 
 SRC_DIR = src
 BUILD_DIR = build
@@ -22,7 +22,10 @@ BUILD_DIR = build
 SRC = philo.c\
 	  philo_utils.c\
 	  parse.c\
-	  simulation.c
+	  simulation.c\
+	  is_dead.c\
+	  one_philo.c\
+	  sleeps.c
 
 OBJ = $(SRC:.c=.o)
 OBJ := $(addprefix $(BUILD_DIR)/, $(OBJ))

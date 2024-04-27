@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 00:44:40 by cglandus          #+#    #+#             */
-/*   Updated: 2024/04/27 18:28:56 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/04/27 21:36:08 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int	get_time(void)
 	return (curr_time);
 }
 
-int	get_val(int value, pthread_mutex_t *m)
+int	get_val(int	*value, pthread_mutex_t *m)
 {
 	int	val;
 
 	pthread_mutex_lock(m);
-	val = value;
+	val = *value;
 	pthread_mutex_unlock(m);
 	return (val);
 }
