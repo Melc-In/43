@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:41:23 by cglandus          #+#    #+#             */
-/*   Updated: 2024/04/27 18:39:24 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/04/27 18:42:43 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,5 +205,3 @@ void	start_simm(t_philo *philo, t_param *param)
 		i++;
 	}
 }
-		usleep(philo->param->tte * 1000);
-		usleep(philo->param->tte * 1000);
