@@ -6,7 +6,7 @@
 #    By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 22:59:01 by cglandus          #+#    #+#              #
-#    Updated: 2024/04/27 07:02:12 by cglandus         ###   ########.fr        #
+#    Updated: 2024/04/27 17:01:35 by cglandus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ BUILD_DIR = build
 SRC = philo.c\
 	  philo_utils.c\
 	  parse.c\
-	  simmulation.c
+	  simulation.c
 
 OBJ = $(SRC:.c=.o)
 OBJ := $(addprefix $(BUILD_DIR)/, $(OBJ))

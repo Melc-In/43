@@ -6,7 +6,7 @@
 /*   By: cglandus <cglandus@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 00:44:38 by cglandus          #+#    #+#             */
-/*   Updated: 2024/04/27 08:17:40 by cglandus         ###   ########.fr       */
+/*   Updated: 2024/04/27 14:45:08 by cglandus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-static int	param_init(t_philo *philo, char **argv)
+static int	param_init(t_param *param, char **argv)
 {
 	int	i;
 
@@ -44,64 +44,87 @@ static int	param_init(t_philo *philo, char **argv)
 	}
 	if (i == 5 || i == 6)
 	{
-		philo->forks = ft_atol(argv[1]);
-		philo->ttd = ft_atol(argv[2]);
-		philo->tte = ft_atol(argv[3]);
-		philo->tts = ft_atol(argv[4]);
+		param->forks = ft_atol(argv[1]);
+		param->ttd = ft_atol(argv[2]);
+		param->tte = ft_atol(argv[3]);
+		param->tts = ft_atol(argv[4]);
 		if (i == 6)
 		{
-			philo->must_eat = 1;
-			philo->n_toeat = ft_atol(argv[5]);
+			param->must_eat = 1;
+			param->n_toeat = ft_atol(argv[5]);
 		}
 		return (1);
 	}
 	return (0);
 }
 
-static int	philo_init(t_philo *philo)
+static int	param_init_2(t_param *param)
+{
+	param->full = 0;
+	param->dead = 0;
+	param->first_time = get_time();
+	if (param->first_time == -1)
+		return (0);
+	if (pthread_mutex_init(&param->print_mtx, NULL) != 0
+		|| pthread_mutex_init(&param->dead_mtx, NULL) != 0
+		|| pthread_mutex_init(&param->eat_mtx, NULL) != 0
+		|| pthread_mutex_init(&param->full_mtx, NULL) != 0)
+		return (0);
+	return (1);
+}
+
+static int	philo_init(t_philo *philo, t_param *param)
 {
 	int	i;
 
 	i = 0;
-	philo->dead = 0;
-	philo->full = 0;
-	philo->forks_mtx = (pthread_mutex_t *)ft_calloc(philo->forks, sizeof(pthread_mutex_t));
-	if (!philo->forks_mtx)
+	if (!param_init_2(param))
 		return (0);
-	philo->man = ft_calloc(philo->forks, sizeof(t_greec));
-	if (!philo->man)
+	while (i < param->forks)
 	{
-		if (philo->forks)
-			free(philo->forks_mtx);
-		return (0);
-	}
-	while (i < philo->forks)
-	{
-		pthread_mutex_init(&philo->forks_mtx[i], NULL);
+		philo[i].param = param;
+		if (pthread_mutex_init(&philo[i].lfork, NULL) != 0)
+			return (0);
+		philo[i].who = i + 1;
+		philo[i].last_meal = get_time();
 		i++;
 	}
-	if (pthread_mutex_init(&philo->print_mtx, NULL) != 0
-		|| pthread_mutex_init(&philo->dead_mtx, NULL) != 0
-		|| pthread_mutex_init(&philo->eat_mtx, NULL) != 0
-		|| pthread_mutex_init(&philo->full_mtx, NULL) != 0)
-		return (0);
+	i = 0;
+	while (i < param->forks - 1)
+	{
+		philo[i].rfork = &philo[i + 1].lfork;
+		i++;
+	}
+	philo[i].rfork = &philo[0].lfork;
 	return (1);
 }
 
 int	main(int argc, char **argv)
 {
-	t_philo	philo;
+	t_param	*param;
+	t_philo	*philo;
 
 	if (argc > 1)
 	{
-		philo.n_toeat = -1;
-		philo.must_eat = 0;
-		if (!param_init(&philo, argv))
+		param = (t_param *)ft_calloc(1, sizeof(t_param));
+		if (!param)
 			return (-1);
-		if (!philo_init(&philo))
+		param->n_toeat = -1;
+		param->must_eat = 0;
+		if (!param_init(param, argv))
+		{
+			free(param);
 			return (-1);
-		start_simm(&philo);
-		destroy_simm(&philo);
+		}
+		philo = (t_philo *)ft_calloc(param->forks, sizeof(t_philo));
+		if (!philo || !philo_init(philo, param))
+		{
+			if (philo)
+				free(philo);
+			return (-1);
+		}
+		start_simm(philo, param);
+		destroy_simm(philo, param);
 	}
 	return (0);
 }
